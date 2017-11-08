@@ -16,6 +16,7 @@ public class FormFieldAnnotationHandler implements AnnotationHandler {
 		rowContext.addToRow(label, 0);
 
 		Node widget = (Node) FieldUtils.readField(fieldContext.getField(), fieldContext.getSource(), true);
+		widget.autosize();
 		rowContext.addToRow(widget, 1);
 		fieldContext.setNode(widget);
 	}

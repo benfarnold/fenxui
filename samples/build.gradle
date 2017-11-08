@@ -1,6 +1,6 @@
-if (!hasProperty('mainClass')) {
-    ext.mainClass = 'org.fenxui.samples.SampleApp'
-}
+apply plugin: 'application'
+apply plugin: 'java'
+mainClassName = 'org.fenxui.samples.SampleApp'
 
 dependencies {
 	compile project(':fenxui')

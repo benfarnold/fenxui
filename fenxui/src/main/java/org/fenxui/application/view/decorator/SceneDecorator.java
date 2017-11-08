@@ -22,6 +22,7 @@ public class SceneDecorator extends AbstractDecorator<FenxuiDecorator> implement
 		double height = bounds.getHeight() / 1.35;
 		FenxuiDecorator decore = decorator.decorate(fenxuiViewModel, fenxuiConfig);
 		Scene scene = new Scene(decore, width, height);
+
 		scene.getStylesheets().addAll(fenxuiConfig.getStylesheets());
 		return scene;
 	}

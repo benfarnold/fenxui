@@ -1,6 +1,8 @@
 package org.fenxui.application.view.factory.ootb;
 
 import java.lang.reflect.InvocationTargetException;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import org.fenxui.annotation.AppPage;
@@ -29,23 +31,25 @@ public class AbstractPageFactory {
 	public ContentPane makePage(Object applicationPage, FenxuiConfig fenxuiConfig) {
 		ContentPane contentPane = new ContentPane();
 		contentPane.setAlignment(fenxuiConfig.getAlignent());
-//		contentPane.setPadding(fenxuiConfig.getPadding());
-		contentPane.autosize();
-		int rowIndex = 0;
 
 		try {
 			AppPage appPage = applicationPage.getClass().getAnnotation(AppPage.class);
 			contentPane.getChildren().add(titleFactory.makeTitle(appPage.value(), appPage.cssClass()));
 			GridPane gridPane = formGridFactory.makeForm(applicationPage);
-			gridPane.setAlignment(fenxuiConfig.getAlignent());
+			gridPane.setAlignment(Pos.CENTER_LEFT);
+			gridPane.setCenterShape(true);
 			gridPane.setHgap(fenxuiConfig.getHgap());
 			gridPane.setVgap(fenxuiConfig.getVgap());
 			gridPane.setPadding(fenxuiConfig.getPadding());
-//			gridPane.autosize();
+			gridPane.autosize();
 			contentPane.getChildren().add(gridPane);
+
 			HBox hbBtn = formActionFactory.makeFormActionRow(applicationPage);
 			contentPane.getChildren().add(hbBtn);
-//			gridPane.add(hbBtn, 1, rowIndex++);
+
+			contentPane.getChildren().add(1, new Label());
+			contentPane.getChildren().add(4, new Label());
+			contentPane.setSpacing(10);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {

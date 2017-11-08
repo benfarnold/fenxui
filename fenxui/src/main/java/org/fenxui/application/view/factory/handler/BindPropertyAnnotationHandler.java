@@ -1,12 +1,10 @@
 package org.fenxui.application.view.factory.handler;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import javafx.beans.property.Property;
-import javafx.scene.Node;
 import org.fenxui.annotation.BindProperty;
 import org.fenxui.application.view.bind.widget.FenxuiCheckBox;
+import org.fenxui.application.view.factory.handler.util.ReflectivePropertyRetriever;
 
 public class BindPropertyAnnotationHandler implements AnnotationHandler {
 
@@ -26,20 +24,6 @@ public class BindPropertyAnnotationHandler implements AnnotationHandler {
 			FenxuiCheckBox checkbox = new FenxuiCheckBox();
 			checkbox.selectedProperty();
 		});
-	}
-
-	private class ReflectivePropertyRetriever {
-
-		private final String methodName;
-
-		private ReflectivePropertyRetriever(String name) {
-			this.methodName = name + "Property";
-		}
-
-		Property getProperty(Node node) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-			Method m = node.getClass().getMethod(methodName);
-			return (Property) m.invoke(node);
-		}
 	}
 
 }

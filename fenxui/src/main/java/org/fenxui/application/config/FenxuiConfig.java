@@ -5,15 +5,16 @@ import javafx.geometry.Pos;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import javafx.scene.layout.ColumnConstraints;
 
 public class FenxuiConfig {
 
 	private Pos alignent = Pos.CENTER;
 	private int hgap = 10;
 	private int vgap = 10;
-	private int titleColSpan = 3;
-	private int titleRowSpan = 1;
+	private List<ColumnConstraints> colConstraints = new FormPrototype().getFormLayout();
 	private Insets padding = new Insets(25, 25, 25, 25);
 	private List<String> stylesheets = new ArrayList<>();
 
@@ -57,20 +58,12 @@ public class FenxuiConfig {
 		this.stylesheets = stylesheets;
 	}
 
-	public int getTitleColSpan() {
-		return titleColSpan;
+	public List<ColumnConstraints> getColConstraints() {
+		return colConstraints;
 	}
 
-	public void setTitleColSpan(int titleColSpan) {
-		this.titleColSpan = titleColSpan;
-	}
-
-	public int getTitleRowSpan() {
-		return titleRowSpan;
-	}
-
-	public void setTitleRowSpan(int titleRowSpan) {
-		this.titleRowSpan = titleRowSpan;
+	public void setColConstraints(List<ColumnConstraints> colConstraints) {
+		this.colConstraints = colConstraints;
 	}
 
 	public static class Builder {
@@ -98,12 +91,8 @@ public class FenxuiConfig {
 			return set(() -> config.vgap = vgap);
 		}
 
-		public Builder titleColSpan(int titleColSpan) {
-			return set(() -> config.titleColSpan = titleColSpan);
-		}
-
-		public Builder titleRowSpan(int titleRowSpan) {
-			return set(() -> config.titleRowSpan = titleRowSpan);
+		public Builder formColumnConstraints(ColumnConstraints... columnConstraints) {
+			return set(() -> config.colConstraints = Arrays.asList(columnConstraints));
 		}
 
 		public Builder padding(double inset) {
@@ -123,5 +112,23 @@ public class FenxuiConfig {
 	private interface Setter {
 
 		void execute();
+	}
+
+	private static class FormPrototype {
+
+		private int percentWidthFormFieldLabel = 20;
+		private int percentWidthFormField = 30;
+		private int percentWidthFormFieldButton = 10;
+
+		public List<ColumnConstraints> getFormLayout() {
+			ColumnConstraints label = new ColumnConstraints();
+			label.setPercentWidth(percentWidthFormFieldLabel);
+			ColumnConstraints field = new ColumnConstraints();
+			field.setPercentWidth(percentWidthFormField);
+			ColumnConstraints button = new ColumnConstraints();
+			button.setPercentWidth(percentWidthFormFieldButton);
+			return Arrays.asList(label, field, button);
+		}
+
 	}
 }

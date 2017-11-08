@@ -34,7 +34,7 @@ public class SplitPaneDecorator extends AbstractDecorator<ContentPane> implement
 		StackPane mainPain = new StackPane();
 
 		SplitPane splitPane = new SplitPane(leftMenu, mainPain);
-		splitPane.setDividerPosition(0, .20);
+		splitPane.setDividerPosition(0, .3);
 		splitPane.getStyleClass().add(appPage.cssClass());
 		int i = 0;
 		for (Field field : viewModel.getClass().getDeclaredFields()) {

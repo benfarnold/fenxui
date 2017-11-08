@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -36,7 +35,7 @@ public class PageOne {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Select Photo");
 
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PING", "*.png"));
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPEG", "*.jpg"));
 		File file = fileChooser.showOpenDialog(viewModel.getStage());
 		if (file != null) {
