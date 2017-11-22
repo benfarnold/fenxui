@@ -3,5 +3,5 @@ apply plugin: 'java'
 mainClassName = 'org.fenxui.samples.SampleApp'
 
 dependencies {
-	compile project(':fenxui')
+	compile project(':fenxui-db')
 }

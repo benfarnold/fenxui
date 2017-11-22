@@ -5,5 +5,5 @@ import javafx.stage.Stage;
 
 public interface FenxuiFactory {
 
-	public Scene makeScene(Stage primaryStage);
+	public Scene makeScene(Stage primaryStage) throws IllegalAccessException, NoSuchMethodException;
 }

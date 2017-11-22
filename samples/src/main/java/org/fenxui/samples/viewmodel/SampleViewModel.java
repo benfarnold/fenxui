@@ -1,14 +1,14 @@
 package org.fenxui.samples.viewmodel;
 
-import org.fenxui.annotation.AppPage;
-import org.fenxui.annotation.GlobalBind;
-import org.fenxui.annotation.MenuItem;
+import org.fenxui.annotation.app.Menu;
+import org.fenxui.annotation.app.MenuItem;
 import org.fenxui.application.view.FenxuiViewModel;
+import org.fenxui.data.mongo.annotation.EnableMongo;
 import org.fenxui.samples.viewmodel.pages.PageOne;
-import org.fenxui.samples.viewmodel.pages.PageThree;
 import org.fenxui.samples.viewmodel.pages.PageTwo;
 
-@AppPage(value = "", cssClass = "menupage")
+@Menu
+@EnableMongo(name = "sampleapp-mongo.db")
 public class SampleViewModel extends FenxuiViewModel {
 
 	@MenuItem("Welcome")
@@ -20,4 +20,11 @@ public class SampleViewModel extends FenxuiViewModel {
 //	@GlobalBind("enable")
 //	@MenuItem("Not Unlocked Yet")
 //	private final PageThree pageThree = new PageThree(this);
+	public PageOne getPageOne() {
+		return pageOne;
+	}
+
+	public PageTwo getPageTwo() {
+		return pageTwo;
+	}
 }

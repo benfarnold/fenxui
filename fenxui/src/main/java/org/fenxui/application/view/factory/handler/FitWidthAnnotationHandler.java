@@ -13,8 +13,8 @@ public class FitWidthAnnotationHandler implements AnnotationHandler {
 		PostProcessor fitWidthPostProcessor = (Node node) -> {
 			if (node instanceof ImageView) {
 				ImageView view = (ImageView) node;
-				view.setFitWidth(fitWidth.value());
-				view.setPreserveRatio(true);
+//				view.setFitWidth(fitWidth.value());
+//				view.setPreserveRatio(true);
 			}
 		};
 		fieldContext.addPostProcessor(fitWidthPostProcessor);

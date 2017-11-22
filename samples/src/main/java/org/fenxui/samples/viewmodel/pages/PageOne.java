@@ -1,31 +1,38 @@
 package org.fenxui.samples.viewmodel.pages;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.event.ActionEvent;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import org.fenxui.annotation.AppPage;
 import org.fenxui.annotation.FormAction;
-import org.fenxui.annotation.FormField;
-import org.fenxui.annotation.FormFieldButton;
 import org.fenxui.application.view.bind.widget.FenxuiTextField;
 import org.fenxui.samples.viewmodel.SampleViewModel;
 import org.fenxui.annotation.FitWidth;
+import org.fenxui.annotation.FieldButton;
+import org.fenxui.annotation.FieldLabel;
+import org.fenxui.application.view.bind.widget.FenxuiImageView;
+import org.fenxui.application.data.event.SaveEvent;
+import org.fenxui.application.event.EventDispatcher;
+import org.fenxui.data.annotation.AutoLoad;
+import org.fenxui.data.annotation.DataField;
+import org.fenxui.data.annotation.DataTable;
 
 @AppPage("Welcome")
+@AutoLoad
+@DataTable("profile")
 public class PageOne {
 	private SampleViewModel viewModel;
 
-	@FormField("Name")
+	@DataField("name")
+	@FieldLabel("Name")
 	private final FenxuiTextField name = new FenxuiTextField();
 
-	@FormField("Photo")
-	@FormFieldButton(value = "Browse", action = "doBrowse")
+	@DataField("imgPath")
+	@FieldLabel("Photo")
+	@FieldButton(value = "Browse", action = "doBrowse")
 	@FitWidth(100)
-	private final ImageView image = new ImageView();
+	private final FenxuiImageView image = new FenxuiImageView();
 
 	public PageOne(SampleViewModel viewModel) {
 		this.viewModel = viewModel;
@@ -38,16 +45,29 @@ public class PageOne {
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPEG", "*.jpg"));
 		File file = fileChooser.showOpenDialog(viewModel.getStage());
-		if (file != null) {
-			Image image2 = new Image(new FileInputStream(file), 100, 0, true, false);
-			image.setImage(image2);
-		}
+		image.setSelected(file);
 		viewModel.getStage().show();
 	}
 
 	@FormAction("Save")
 	public void doSave(ActionEvent actionEvent) {
-
+		EventDispatcher.INSTANCE.broadcast(new SaveEvent(this));
 	}
 
+	//getters-setters
+	public String getName() {
+		return name.getText();
+	}
+
+	public void setName(String value) {
+		name.setText(value);
+	}
+
+	public String getImagePath() {
+		return image.getPath();
+	}
+
+	public void setImagePath(String path) {
+		image.setPath(path);
+	}
 }

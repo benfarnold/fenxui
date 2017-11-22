@@ -1,4 +1,4 @@
-package org.fenxui.annotation;
+package org.fenxui.data.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,15 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * A button to decorate the associated field. ie: Browse
+ * field in your data-store object
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface FormFieldButton {
+public @interface DataField {
 
 	String value();
-
-	String cssClass() default "form-field";
-
-	String action() default "";
 }

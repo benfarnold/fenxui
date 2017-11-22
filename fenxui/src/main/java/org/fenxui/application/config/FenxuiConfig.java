@@ -116,17 +116,11 @@ public class FenxuiConfig {
 
 	private static class FormPrototype {
 
-		private int percentWidthFormFieldLabel = 20;
-		private int percentWidthFormField = 30;
-		private int percentWidthFormFieldButton = 10;
-
 		public List<ColumnConstraints> getFormLayout() {
 			ColumnConstraints label = new ColumnConstraints();
-			label.setPercentWidth(percentWidthFormFieldLabel);
 			ColumnConstraints field = new ColumnConstraints();
-			field.setPercentWidth(percentWidthFormField);
+			field.setFillWidth(true);
 			ColumnConstraints button = new ColumnConstraints();
-			button.setPercentWidth(percentWidthFormFieldButton);
 			return Arrays.asList(label, field, button);
 		}
 

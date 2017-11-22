@@ -1,5 +1,5 @@
 .root {
-	-fx-background-color: red
+	-fx-background-color: linear-gradient(cadetblue, whitesmoke);
 }
 .label {
 	-fx-font-size: 12px;
@@ -15,7 +15,7 @@
 }
 .apppage {
 	-fx-border-color:  transparent;
-	-fx-background-color: transparent;
+	-fx-background-color: BLACK;
 	-fx-background-insets: 0;
 }
 .menu-text {
@@ -55,3 +55,9 @@
 	-fx-background-color: transparent;
 	-fx-background-insets: 0;
 }
+.fenxui {
+	-fx-border-color:  transparent;
+	-fx-background-color: BLACK;
+	-fx-background-insets: 1;
+}
+
