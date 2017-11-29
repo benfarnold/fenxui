@@ -4,23 +4,22 @@ import java.lang.reflect.Method;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.action.ReflectiveActionEventHandler;
 import org.fenxui.application.view.bind.widget.ActionableWidget;
+import org.fenxui.application.view.factory.handler.util.ReflectiveMethodRetriever;
 
 public interface ActionHandler {
 
-	default void setOnAction(Object source, Node widget, String action) throws NoSuchMethodException {
+	default void setOnAction(Object source, Node widget, String action) throws FenxuiInitializationException {
 		if (!"".equals(action)) {
-			Method exec = source.getClass().getMethod(action, ActionEvent.class);
-			if (exec != null) {
+			Method method = new ReflectiveMethodRetriever(source.getClass())
+					.getMethod(action, ActionEvent.class);
+			if (method != null) {
 				if (widget instanceof ActionableWidget) {
 					ActionableWidget actionableWidget = (ActionableWidget) widget;
 					EventHandler<ActionEvent> handler = actionableWidget.getOnAction();
-					actionableWidget.setOnAction(new ReflectiveActionEventHandler(exec, source, handler));
-//				} else {
-//					EventHandler<MouseEvent> handler = (EventHandler<MouseEvent>) widget.getOnMouseExited();
-//					widget.setOnMouseExited(new ReflectiveMouseEventHandler(exec, applicationPage, handler));
-//				}
+					actionableWidget.setOnAction(new ReflectiveActionEventHandler(method, source, handler));
 				}
 			}
 		}

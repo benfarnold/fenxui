@@ -2,8 +2,9 @@ package org.fenxui.application.view.factory;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.fenxui.application.exception.FenxuiInitializationException;
 
 public interface FenxuiFactory {
 
-	public Scene makeScene(Stage primaryStage);
+	Scene makeScene(Stage primaryStage) throws FenxuiInitializationException;
 }

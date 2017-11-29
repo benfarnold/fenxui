@@ -8,9 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import org.fenxui.annotation.AppPage;
+import org.fenxui.annotation.FieldButton;
+import org.fenxui.annotation.FieldLabel;
 import org.fenxui.annotation.FormAction;
-import org.fenxui.annotation.FormField;
-import org.fenxui.annotation.FormFieldButton;
 import org.fenxui.application.view.bind.widget.FenxuiTextField;
 import org.fenxui.samples.viewmodel.SampleViewModel;
 import org.fenxui.annotation.FitWidth;
@@ -19,11 +19,11 @@ import org.fenxui.annotation.FitWidth;
 public class PageOne {
 	private SampleViewModel viewModel;
 
-	@FormField("Name")
+	@FieldLabel("Name")
 	private final FenxuiTextField name = new FenxuiTextField();
 
-	@FormField("Photo")
-	@FormFieldButton(value = "Browse", action = "doBrowse")
+	@FieldLabel("Photo")
+	@FieldButton(value = "Browse", action = "doBrowse")
 	@FitWidth(100)
 	private final ImageView image = new ImageView();
 

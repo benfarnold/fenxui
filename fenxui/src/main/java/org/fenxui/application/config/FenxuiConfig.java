@@ -14,6 +14,8 @@ public class FenxuiConfig {
 	private Pos alignent = Pos.CENTER;
 	private int hgap = 10;
 	private int vgap = 10;
+	private double initialSceneWidth = -1;
+	private double initialSceneHeight = -1;
 	private List<ColumnConstraints> colConstraints = new FormPrototype().getFormLayout();
 	private Insets padding = new Insets(25, 25, 25, 25);
 	private List<String> stylesheets = new ArrayList<>();
@@ -24,6 +26,22 @@ public class FenxuiConfig {
 
 	public void setAlignent(Pos alignent) {
 		this.alignent = alignent;
+	}
+
+	public double getInitialSceneWidth() {
+		return initialSceneWidth;
+	}
+
+	public void setInitialSceneWidth(double initialSceneWidth) {
+		this.initialSceneWidth = initialSceneWidth;
+	}
+
+	public double getInitialSceneHeight() {
+		return initialSceneHeight;
+	}
+
+	public void setInitialSceneHeight(double initialSceneHeight) {
+		this.initialSceneHeight = initialSceneHeight;
 	}
 
 	public int getHgap() {
@@ -83,6 +101,14 @@ public class FenxuiConfig {
 			return set(() -> config.alignent = pos);
 		}
 
+		public Builder initialSceneWidth(int initialSceneWidth) {
+			return set(() -> config.initialSceneWidth = initialSceneWidth);
+		}
+
+		public Builder initialSceneHeight(int initialSceneHeight) {
+			return set(() -> config.initialSceneHeight = initialSceneHeight);
+		}
+
 		public Builder hGap(int hgap) {
 			return set(() -> config.hgap = hgap);
 		}
@@ -90,6 +116,7 @@ public class FenxuiConfig {
 		public Builder vGap(int vgap) {
 			return set(() -> config.vgap = vgap);
 		}
+
 
 		public Builder formColumnConstraints(ColumnConstraints... columnConstraints) {
 			return set(() -> config.colConstraints = Arrays.asList(columnConstraints));

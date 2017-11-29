@@ -1,6 +1,7 @@
 package org.fenxui.application.view.factory.handler;
 
-import java.lang.reflect.InvocationTargetException;
+import org.fenxui.application.exception.FenxuiInitializationException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class FormContext {
 		nodesInForm.put(name, fieldContext);
 	}
 
-	public void postProcessNodes() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+	public void postProcessNodes() throws FenxuiInitializationException {
 		for (NodeContext context : nodesInForm.values()) {
 			context.postProcess();
 		}

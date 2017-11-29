@@ -1,4 +1,8 @@
 .gradle
 .nb-gradle
+*.iml
+.idea/**
 fenxui/build/**
+fenxui/out/**
 samples/build/**
+samples/out/**

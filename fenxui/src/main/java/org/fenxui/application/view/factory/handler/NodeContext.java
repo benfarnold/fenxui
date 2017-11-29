@@ -1,10 +1,10 @@
 package org.fenxui.application.view.factory.handler;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;
+import org.fenxui.application.exception.FenxuiInitializationException;
 
 public class NodeContext {
 	private final List<PostProcessor> postProcessors = new ArrayList<>();
@@ -37,10 +37,11 @@ public class NodeContext {
 		this.postProcessors.add(postProcessor);
 	}
 
-	public void postProcess() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+	public void postProcess() throws FenxuiInitializationException {
 		for (PostProcessor postProcessor : postProcessors) {
 			postProcessor.postProcess(node);
 		}
+		rowContext.postProcess();
 	}
 
 	public Node getNode() {
