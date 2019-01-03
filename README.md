@@ -71,7 +71,7 @@ private final StringProperty serverType = new SimpleStringProperty();
 ```
 
 ### Validation
-### #@Validator
+#### @Validator
 Enables validation on the field.  A message will be displayed below the field when validation fails.  You can have multiple validators per field
 * type 
 * message
