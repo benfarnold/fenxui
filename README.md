@@ -2,82 +2,91 @@
 JavaFX Wrapper for annotation-based programming designed to make simple apps simpler.
 
 ## Annotations
-###Layout
-####@Menu
+### Layout
+#### @Menu
 declares a class holding a menu
 * cssClass (default "menuitem")
 * orientation (default VERTICAL)
 
 example<br>
-<code>@Menu<br>
-public class SampleViewModel extends FenxuiViewModel {</code>
-
-####@MenuItem
+```java
+@Menu
+public class SampleViewModel extends FenxuiViewModel {
+```
+#### @MenuItem
 declares a menu item or tab
 * value (Text label)
 * cssClass (default "menu-text")
 * required (flag if user input on the page is required)
 
-example<br>
-<code>@MenuItem("Server Settings")<br>
-private final ServerSettings serverSettings = new ServerSettings(this);</code>
-
-####@AppPage
+example
+```java
+@MenuItem("Server Settings")
+private final ServerSettings serverSettings = new ServerSettings(this);
+```
+#### @AppPage
 Title/stylings for page
 * value (Title)
 * cssClass (default "apppage")
 
-example<br><code>
-@AppPage("Server Settings")<br>
-public class ServerSettings {</code>
+example<br>
+```java
+@AppPage("Server Settings")
+public class ServerSettings {
+```
 
-###@FormField
+### @FormField
 Declares a user-input field
 * label
 * type (default TEXT)
 * section (If the field is hidden by default (ADDITIONAL) or displayed by default (DEFAULT); default DEFAULT)
-<code>
+
+example
+```java
 @FormField(label = "Server")
 private final StringProperty machine = new SimpleStringProperty();
-</code>
+```
 
 Note, the TextField/ComboBox/CheckBox, etc value will be saved on the StringProperty field it decorates.  This allows you to use the field values directly.
-###Value Providers
-####@CheckBoxValue
+### Value Providers
+#### @CheckBoxValue
 The value to save on the bound StringProperty if the checkbox is checked or unchecked
 * checked
 * unchecked
 
-example<br><code>
-@CheckBoxValue(checked="true", unchecked="false")<br>
+```java
+@CheckBoxValue(checked="true", unchecked="false")
 private final StringProperty enableNotifications = new SimpleStringProperty("false");
-</code>
+```
 
-####@ValueProviderValue
+#### @ValueProviderValue
 Provides key-value pair for ComboBox. Decorate field for multiple values.
 * key (the value to save on the field)
 * value (the value to display in the ComboBox)
 
-example<br><code>
-@ValueProviderValue(key="ORCL", value= "Oracle")<br>
-@ValueProviderValue(key="PGRS", value= "PostgreSQL")<br>
+```java
+@ValueProviderValue(key="ORCL", value= "Oracle")
+@ValueProviderValue(key="PGRS", value= "PostgreSQL")
 private final StringProperty serverType = new SimpleStringProperty();
-</code>
-###Validation
-####@Validator
+```
+
+### Validation
+### #@Validator
 Enables validation on the field.  A message will be displayed below the field when validation fails.  You can have multiple validators per field
 * type 
 * message
 * evalExpression (JEXL-expression that controls if validation should be enforced on supporting validators)
 
-example<br><code>
-@Validator(type = ValidatorOptions.REQUIRED, message = "Port is required")<br>
-@Validator(type = ValidatorOptions.NUMERIC, message = "Port must be numeric")<br>
-private final StringProperty port = new SimpleStringProperty("8080");<br><br>
-@FormField(label = "Enable notifications", type=CHECKBOX)<br>
-@CheckBoxValue(checked="true", unchecked="false")<br>
-private final StringProperty enableNotifications = new SimpleStringProperty("false");<br><br>
-@FormField(label = "From email")<br>
-@Validator(type = ValidatorOptions.REQUIRED, message = "From email is required", evalExpression="#{enableNotifications} eq 'true'")<br>
-private final StringProperty senderAddress = new SimpleStringProperty();<br>
-</code>
+```java
+@Validator(type = ValidatorOptions.REQUIRED, message = "Port is required")
+@Validator(type = ValidatorOptions.NUMERIC, message = "Port must be numeric")
+private final StringProperty port = new SimpleStringProperty("8080");
+
+@FormField(label = "Enable notifications", type=CHECKBOX)
+@CheckBoxValue(checked="true", unchecked="false")
+private final StringProperty enableNotifications = new SimpleStringProperty("false");
+
+@FormField(label = "From email")
+@Validator(type = ValidatorOptions.REQUIRED, message = "From email is required", evalExpression="#{enableNotifications} eq 'true'")
+private final StringProperty senderAddress = new SimpleStringProperty();
+```
