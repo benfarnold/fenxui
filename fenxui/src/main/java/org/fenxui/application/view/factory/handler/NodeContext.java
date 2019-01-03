@@ -5,43 +5,35 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;
 import org.fenxui.application.exception.FenxuiInitializationException;
+import org.fenxui.application.view.components.option.FieldOption;
+import org.fenxui.application.view.factory.handler.page.PageContext;
 
 public class NodeContext {
 	private final List<PostProcessor> postProcessors = new ArrayList<>();
 	private Node node;
 	private final Field field;
 	private final Object source;
-	private final RowContext rowContext;
-	private final FormContext formContext;
+	private final FieldOption activeFieldOption;
+	private final PageContext pageContext;
 
-	public NodeContext(Field field, Object source, RowContext rowContext, FormContext formContext) {
+	public NodeContext(Field field, Object source, PageContext pageContext) {
 		this.field = field;
 		this.source = source;
-		this.rowContext = rowContext;
-		this.formContext = formContext;
+		this.activeFieldOption = new FieldOption(field.getName());
+		this.pageContext = pageContext;
+		pageContext.addFieldOption(activeFieldOption);
 	}
 
-	public RowContext getRowContext() {
-		return rowContext;
+	public FieldOption getActiveFieldOption() {
+		return activeFieldOption;
 	}
-
-	public FormContext getFormContext() {
-		return formContext;
-	}
-
+	
 	public void setNode(Node node) {
 		this.node = node;
 	}
 
 	public void addPostProcessor(PostProcessor postProcessor) {
 		this.postProcessors.add(postProcessor);
-	}
-
-	public void postProcess() throws FenxuiInitializationException {
-		for (PostProcessor postProcessor : postProcessors) {
-			postProcessor.postProcess(node);
-		}
-		rowContext.postProcess();
 	}
 
 	public Node getNode() {
@@ -54,6 +46,10 @@ public class NodeContext {
 
 	public Object getSource() {
 		return source;
+	}
+
+	public PageContext getPageContext() {
+		return pageContext;
 	}
 
 }

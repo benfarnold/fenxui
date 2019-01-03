@@ -10,7 +10,7 @@ import java.util.List;
 import javafx.scene.layout.ColumnConstraints;
 
 public class FenxuiConfig {
-
+	private String title;
 	private Pos alignent = Pos.CENTER;
 	private int hgap = 10;
 	private int vgap = 10;
@@ -84,6 +84,14 @@ public class FenxuiConfig {
 		this.colConstraints = colConstraints;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public static class Builder {
 
 		FenxuiConfig config = new FenxuiConfig();
@@ -132,6 +140,10 @@ public class FenxuiConfig {
 
 		public Builder css(URL url) {
 			return set(() -> config.stylesheets.add(url.toExternalForm()));
+		}
+
+		public Builder title(String title) {
+			return set(()-> config.title = title);
 		}
 	}
 

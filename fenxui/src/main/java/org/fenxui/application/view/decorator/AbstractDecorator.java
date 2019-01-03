@@ -1,6 +1,7 @@
 package org.fenxui.application.view.decorator;
 
 import javafx.scene.control.Label;
+import org.fenxui.application.view.factory.ootb.AppFactory;
 
 public class AbstractDecorator<T> {
 
@@ -18,5 +19,9 @@ public class AbstractDecorator<T> {
 
 	protected Label makeTitle(String value, String cssClass) {
 		return makeLabel(value, cssClass + "-title");
+	}
+	
+	public AppFactory getAppFactory() {
+		return decorator.getAppFactory();
 	}
 }

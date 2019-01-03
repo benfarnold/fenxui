@@ -9,4 +9,8 @@ public interface AppFactory {
 	AppConstruction makeApp(FenxuiViewModel viewModel, FenxuiConfig fenxuiConfig) throws FenxuiInitializationException;
 
 	PageFactory getPageFactory();
+	
+	Runnable getOnCloseAction();
+
+	public void setViewModel(FenxuiViewModel fenxuiViewModel);
 }

@@ -15,4 +15,6 @@ public @interface MenuItem {
 	String value();
 
 	String cssClass() default "menu-text";
+	
+	boolean required() default false;
 }

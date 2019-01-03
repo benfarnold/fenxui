@@ -11,6 +11,7 @@ public class AppPageAnnotationHandler implements PageAnnotationHandler {
 		AppPage appPage = (AppPage) annotation;
 		Label label = new Label(appPage.value());
 		label.setId(appPage.cssClass() + "-title");
+		pageContext.setPageCss(appPage.cssClass());
 		pageContext.setTitle(label);
 	}
 

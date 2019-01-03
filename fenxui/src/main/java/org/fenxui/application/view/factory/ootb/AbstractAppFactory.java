@@ -7,7 +7,7 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import org.fenxui.application.config.FenxuiConfig;
 import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.FenxuiViewModel;
-import org.fenxui.application.view.bind.ContentPane;
+import org.fenxui.application.view.components.ContentPane;
 import org.fenxui.application.view.factory.handler.app.AppAnnotationHandler;
 
 public class AbstractAppFactory {
@@ -23,10 +23,20 @@ public class AbstractAppFactory {
 	public AppConstruction makeApp(FenxuiViewModel viewModel, FenxuiConfig fenxuiConfig) throws FenxuiInitializationException {
 		AppConstruction appConstruction = new AppConstruction(viewModel);
 		try {
+			Annotation[] annotations = viewModel.getClass().getAnnotations();
+			if (annotations != null) {
+				for (Annotation annotation: annotations) {
+					AppAnnotationHandler handler = appAnnotationHandlers.get(annotation.annotationType());
+					if (handler != null) {
+						handler.handle(appConstruction, annotation);
+					}
+				}
+			}
+			
 			int i = 0;
 			for (Field field : viewModel.getClass().getDeclaredFields()) {
 				Object applicationPage = FieldUtils.readField(field, viewModel, true);
-				ContentPane contentPane = pageFactory.makePage(applicationPage, fenxuiConfig);
+				ContentPane contentPane = pageFactory.makePage(applicationPage, fenxuiConfig, appConstruction);
 				contentPane.setVisible(i == 0);
 				appConstruction.addContentPane(contentPane);
 

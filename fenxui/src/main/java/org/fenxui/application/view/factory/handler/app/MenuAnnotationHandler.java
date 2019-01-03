@@ -7,8 +7,9 @@ import org.fenxui.application.view.factory.ootb.AppConstruction;
 public class MenuAnnotationHandler implements AppAnnotationHandler {
 
 	@Override
-	public void handle(AppConstruction appContruction, Annotation annotation) throws IllegalAccessException, NoSuchMethodException {
+	public void handle(AppConstruction appConstruction, Annotation annotation) throws IllegalAccessException, NoSuchMethodException {
 		Menu menu = (Menu) annotation;
-		appContruction.setMenuCssClass(menu.cssClass());
+		appConstruction.setMenuCssClass(menu.cssClass());
+		appConstruction.setMenuOrientation(menu.orientation());
 	}
 }

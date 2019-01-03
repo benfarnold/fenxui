@@ -3,19 +3,21 @@ package org.fenxui.application.view.factory;
 import java.util.HashMap;
 import java.util.Map;
 import org.fenxui.annotation.AppPage;
-import org.fenxui.annotation.BindProperty;
-import org.fenxui.annotation.ColSpan;
-import org.fenxui.annotation.FieldButton;
-import org.fenxui.annotation.FieldLabel;
-import org.fenxui.annotation.FitWidth;
+import org.fenxui.annotation.CheckBoxValue;
+import org.fenxui.annotation.FormField;
+import org.fenxui.annotation.Validator;
+import org.fenxui.annotation.Validators;
+import org.fenxui.annotation.ValueProviderValue;
+import org.fenxui.annotation.ValueProviderValues;
 import org.fenxui.annotation.app.Menu;
 import org.fenxui.annotation.app.MenuItem;
 import org.fenxui.application.view.factory.handler.AnnotationHandler;
-import org.fenxui.application.view.factory.handler.BindPropertyAnnotationHandler;
-import org.fenxui.application.view.factory.handler.ColSpanAnnotationHandler;
-import org.fenxui.application.view.factory.handler.FieldButtonAnnotationHandler;
-import org.fenxui.application.view.factory.handler.FieldLabelAnnotationHandler;
-import org.fenxui.application.view.factory.handler.FitWidthAnnotationHandler;
+import org.fenxui.application.view.factory.handler.CheckBoxValueAnnotationHandler;
+import org.fenxui.application.view.factory.handler.FormFieldAnnotationHandler;
+import org.fenxui.application.view.factory.handler.ValidatorAnnotationHandler;
+import org.fenxui.application.view.factory.handler.ValidatorsAnnotationHandler;
+import org.fenxui.application.view.factory.handler.ValueProviderValueAnnotationHandler;
+import org.fenxui.application.view.factory.handler.ValueProviderValuesAnnotationHandler;
 import org.fenxui.application.view.factory.handler.app.AppAnnotationHandler;
 import org.fenxui.application.view.factory.handler.app.MenuAnnotationHandler;
 import org.fenxui.application.view.factory.handler.app.MenuItemAnnotationHandler;
@@ -60,11 +62,12 @@ public class FactoryInitContext {
 
 		public static Map<Class, AnnotationHandler> getDefaultHandlers() {
 			Map<Class, AnnotationHandler> handlers = new HashMap<>();
-			handlers.put(BindProperty.class, new BindPropertyAnnotationHandler());
-			handlers.put(FieldLabel.class, new FieldLabelAnnotationHandler());
-			handlers.put(FieldButton.class, new FieldButtonAnnotationHandler());
-			handlers.put(FitWidth.class, new FitWidthAnnotationHandler());
-			handlers.put(ColSpan.class, new ColSpanAnnotationHandler());
+			handlers.put(FormField.class, new FormFieldAnnotationHandler());
+			handlers.put(Validator.class, new ValidatorAnnotationHandler());
+			handlers.put(Validators.class, new ValidatorsAnnotationHandler());
+			handlers.put(ValueProviderValue.class, new ValueProviderValueAnnotationHandler());
+			handlers.put(ValueProviderValues.class, new ValueProviderValuesAnnotationHandler());
+			handlers.put(CheckBoxValue.class, new CheckBoxValueAnnotationHandler());
 			return handlers;
 		}
 	}

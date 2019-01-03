@@ -1,6 +1,5 @@
 package org.fenxui.application.view.decorator;
 
-import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -11,6 +10,7 @@ import org.fenxui.application.view.factory.ootb.AppConstruction;
 import org.fenxui.application.view.factory.ootb.AppFactory;
 
 import java.util.List;
+import org.fenxui.application.view.components.menu.PageLink;
 
 /**
  * Two-frame layout. Menu on left, app-pages on right.
@@ -32,7 +32,7 @@ public class SplitPaneDecorator implements ComponentDecorator<SplitPane, FenxuiV
 		leftMenu.setVgap(fenxuiConfig.getVgap());
 		leftMenu.setPadding(fenxuiConfig.getPadding());
 		leftMenu.getStyleClass().add(appConstruction.getMenuCssClass());
-		List<Node> menuList = appConstruction.getMenuItems();
+		List<PageLink> menuList = appConstruction.getMenuItems();
 		for (int i = 0; i< menuList.size(); i++) {
 			leftMenu.add(menuList.get(i), 0, i);
 		}
@@ -42,9 +42,14 @@ public class SplitPaneDecorator implements ComponentDecorator<SplitPane, FenxuiV
 		splitPane.setDividerPosition(0, .3);
 		splitPane.getStyleClass().add(appConstruction.getMenuCssClass());
 
-		mainPain.getChildren().addAll(appConstruction.getContentPanes());
+//		mainPain.getChildren().addAll(appConstruction.getContentPanes());
 
 		return splitPane;
+	}
+
+	@Override
+	public AppFactory getAppFactory() {
+		return appFactory;
 	}
 
 }
