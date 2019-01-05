@@ -1,5 +1,53 @@
 # fenxui
 JavaFX Wrapper for annotation-based programming designed to make simple apps simpler.
+## Getting Started
+* Clone the source code
+* Build fenxui using gradle <i>install</i> target in the <b>fenxui</b> sub-project
+```
+C:\Users\Me\Documents\GitHub\fenxui>cd fenxui
+
+C:\Users\Me\Documents\GitHub\fenxui\fenxui>gradle install
+```
+
+* Add to your app
+```
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.fenxui', name: 'fenxui', version: '1.0+'
+```
+
+* Make your main class extend <b>FenxuiApplication</b> and provide an annotated view model for introspection.
+```java
+public class SampleApp extends FenxuiApplication {
+
+	@Override
+	public FenxuiConfig getFenxuiConfig() {
+		return new FenxuiConfig.Builder()
+				.css(SampleApp.class.getResource("/css/SampleApp.css"))
+				.title("Sample Fenxui App")
+				.build();
+	}
+
+	@Override
+	public FenxuiPrototype getFenxuiPrototype() {
+		return JFoenixPrototype.newInstance(new SampleViewModel(), () -> {
+			log.info("Application closing");
+			Platform.exit();
+		});
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+```
+* That's it.
+### Prerequisites
+* You must have a JDK that supports JavaFX or have your JDK configured to work with OpenJFX
+* You must have Gradle installed to be able to build fenxui
 
 ## Annotations
 ### Layout
@@ -112,3 +160,22 @@ public class SimpleTabPageA  {
 	private final StringProperty enable = new SimpleStringProperty("false");
 ```
 ![Conditional validator on value in different form](https://user-images.githubusercontent.com/3435255/50727762-97b49a80-10ed-11e9-8591-ebca8b94b89e.png)
+
+## Built With
+* [Gradle](https://gradle.org/) - Dependency Management
+* [Foenix](https://github.com/jfoenixadmin/JFoenix) - UI styleing
+## Contributing
+
+## Versioning
+
+## Authors
+
+* **Ben Arnold** - *Initial work*
+
+See also the list of [contributors](https://github.com/benfarnold/fenxui/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgment
