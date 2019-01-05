@@ -97,4 +97,4 @@ private final StringProperty senderAddress = new SimpleStringProperty();
 ```
 ![Conditional validator on value in same form](https://user-images.githubusercontent.com/3435255/50727761-97b49a80-10ed-11e9-85b1-e47e2b4d2e20.png)
 
-![Conditional validator on value in different form] (https://user-images.githubusercontent.com/3435255/50727762-97b49a80-10ed-11e9-8591-ebca8b94b89e.png)
+![Conditional validator on value in different form](https://user-images.githubusercontent.com/3435255/50727762-97b49a80-10ed-11e9-8591-ebca8b94b89e.png)
