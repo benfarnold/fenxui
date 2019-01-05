@@ -96,5 +96,19 @@ private final StringProperty enableNotifications = new SimpleStringProperty("fal
 private final StringProperty senderAddress = new SimpleStringProperty();
 ```
 ![Conditional validator on value in same form](https://user-images.githubusercontent.com/3435255/50727761-97b49a80-10ed-11e9-85b1-e47e2b4d2e20.png)
+```java
+@AppPage("Tab B")
+public class SimpleTabPageB {
 
+  @FormField(label = "Required when Tab A enabled")
+  @Validator(type = ValidatorOptions.REQUIRED, message = "From email is required", evalExpression="#{SimpleTabPageA.enable} eq 'true'")
+  private final StringProperty conditionallyRequiredField = new SimpleStringProperty();
+
+@AppPage("Tab A")
+public class SimpleTabPageA  {
+
+	@FormField(label = "Enable", type=CHECKBOX)
+	@CheckBoxValue(checked="true", unchecked="false")
+	private final StringProperty enable = new SimpleStringProperty("false");
+```
 ![Conditional validator on value in different form](https://user-images.githubusercontent.com/3435255/50727762-97b49a80-10ed-11e9-8591-ebca8b94b89e.png)
