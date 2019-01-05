@@ -14,6 +14,7 @@ import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.components.validator.ConditionalValidator;
 import org.fenxui.application.view.factory.handler.page.PageContext;
 import org.fenxui.application.view.factory.ootb.AppConstruction;
+import org.fenxui.application.view.factory.ootb.FrameContext;
 
 public class ValidatorAnnotationHandler implements AnnotationHandler {
 
@@ -23,7 +24,7 @@ public class ValidatorAnnotationHandler implements AnnotationHandler {
 
 		FieldOption fieldOption = fieldContext.getActiveFieldOption();
 		PageContext pageContext = fieldContext.getPageContext();
-		AppConstruction appConstruction = pageContext.getAppConstruction();
+		FrameContext appConstruction = pageContext.getFrameContext();
 
 		ValidatorBase validatorImpl = validator.type().create(validator.message());
 

@@ -18,7 +18,6 @@ import org.fenxui.application.view.factory.handler.ValidatorAnnotationHandler;
 import org.fenxui.application.view.factory.handler.ValidatorsAnnotationHandler;
 import org.fenxui.application.view.factory.handler.ValueProviderValueAnnotationHandler;
 import org.fenxui.application.view.factory.handler.ValueProviderValuesAnnotationHandler;
-import org.fenxui.application.view.factory.handler.app.AppAnnotationHandler;
 import org.fenxui.application.view.factory.handler.app.MenuAnnotationHandler;
 import org.fenxui.application.view.factory.handler.app.MenuItemAnnotationHandler;
 import org.fenxui.application.view.factory.handler.page.AppPageAnnotationHandler;
@@ -31,16 +30,12 @@ import org.fenxui.application.view.factory.handler.page.PageAnnotationHandler;
 public class FactoryInitContext {
 
 	private Map<Class, AnnotationHandler> formFieldAnnotationHandlers = FormFactoryPrototype.getDefaultHandlers();
-	private Map<Class, AppAnnotationHandler> appAnnotationHandlers = AppFactoryPrototype.getDefaultHandlers();
 	private Map<Class, PageAnnotationHandler> pageAnnotationHandlers = PageFactoryPrototype.getDefaultHandlers();
 
 	public Map<Class, AnnotationHandler> getFormFieldAnnotationHandlers() {
 		return formFieldAnnotationHandlers;
 	}
 
-	public Map<Class, AppAnnotationHandler> getAppAnnotationHandlers() {
-		return appAnnotationHandlers;
-	}
 
 	public Map<Class, PageAnnotationHandler> getPageAnnotationHandlers() {
 		return pageAnnotationHandlers;
@@ -48,10 +43,6 @@ public class FactoryInitContext {
 
 	public void setFormFieldAnnotationHandlers(Map<Class, AnnotationHandler> formFieldAnnotationHandlers) {
 		this.formFieldAnnotationHandlers = formFieldAnnotationHandlers;
-	}
-
-	public void setAppAnnotationHandlers(Map<Class, AppAnnotationHandler> appAnnotationHandlers) {
-		this.appAnnotationHandlers = appAnnotationHandlers;
 	}
 
 	public void setPageAnnotationHandlers(Map<Class, PageAnnotationHandler> pageAnnotationHandlers) {
@@ -68,15 +59,7 @@ public class FactoryInitContext {
 			handlers.put(ValueProviderValue.class, new ValueProviderValueAnnotationHandler());
 			handlers.put(ValueProviderValues.class, new ValueProviderValuesAnnotationHandler());
 			handlers.put(CheckBoxValue.class, new CheckBoxValueAnnotationHandler());
-			return handlers;
-		}
-	}
 
-	public static class AppFactoryPrototype {
-
-		private static Map<Class, AppAnnotationHandler> getDefaultHandlers() {
-			Map<Class, AppAnnotationHandler> handlers = new HashMap<>();
-			handlers.put(Menu.class, new MenuAnnotationHandler());
 			handlers.put(MenuItem.class, new MenuItemAnnotationHandler());
 			return handlers;
 		}
@@ -86,6 +69,7 @@ public class FactoryInitContext {
 
 		private static Map<Class, PageAnnotationHandler> getDefaultHandlers() {
 			Map<Class, PageAnnotationHandler> handlers = new HashMap<>();
+			handlers.put(Menu.class, new MenuAnnotationHandler());
 			handlers.put(AppPage.class, new AppPageAnnotationHandler());
 			return handlers;
 		}

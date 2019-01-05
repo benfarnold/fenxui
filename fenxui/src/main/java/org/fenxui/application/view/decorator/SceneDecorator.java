@@ -11,14 +11,14 @@ import org.fenxui.application.view.FenxuiViewModel;
 /**
  * Scene layout
  */
-public class SceneDecorator extends AbstractDecorator<Region> implements ComponentDecorator<Scene, FenxuiViewModel> {
+public class SceneDecorator extends AbstractDecorator<Region> implements ComponentDecorator<Scene> {
 	public SceneDecorator(ComponentDecorator decorator) {
 		super(decorator);
 	}
 
 	@Override
-	public Scene decorate(FenxuiViewModel fenxuiViewModel, FenxuiConfig fenxuiConfig) throws FenxuiInitializationException {
-		Region region = decorator.decorate(fenxuiViewModel, fenxuiConfig);
+	public Scene decorate(FenxuiConfig fenxuiConfig) throws FenxuiInitializationException {
+		Region region = decorator.decorate(fenxuiConfig);
 		
 		double width = fenxuiConfig.getInitialSceneWidth();
 		double height = fenxuiConfig.getInitialSceneHeight();
@@ -33,7 +33,7 @@ public class SceneDecorator extends AbstractDecorator<Region> implements Compone
 		}
 		
 		Scene scene = new Scene(region, width, height);
-		fenxuiViewModel.getStage().setTitle(fenxuiConfig.getTitle());
+		getStage().setTitle(fenxuiConfig.getTitle());
 
 		scene.getStylesheets().addAll(fenxuiConfig.getStylesheets());
 		return scene;

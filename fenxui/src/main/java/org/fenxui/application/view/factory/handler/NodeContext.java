@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.factory.handler.page.PageContext;
+import org.fenxui.application.view.factory.ootb.FrameContext;
 
 public class NodeContext {
 	private final List<PostProcessor> postProcessors = new ArrayList<>();

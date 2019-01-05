@@ -12,4 +12,6 @@ public @interface Menu {
 
 	String cssClass() default "menupage";
 	Orientation orientation() default Orientation.VERTICAL;
+	int minimumWidth() default 185;
+	int minimumHeight() default 23;
 }

@@ -1,59 +1,34 @@
 package org.fenxui.application.view.factory.ootb;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.util.Map;
-import org.apache.commons.lang3.reflect.FieldUtils;
+import javafx.scene.layout.Region;
 import org.fenxui.application.config.FenxuiConfig;
 import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.FenxuiViewModel;
 import org.fenxui.application.view.components.ContentPane;
-import org.fenxui.application.view.factory.handler.app.AppAnnotationHandler;
 
-public class AbstractAppFactory {
+public abstract class AbstractAppFactory implements AppFactory {
 
 	private final PageFactory pageFactory;
-	private final Map<Class, AppAnnotationHandler> appAnnotationHandlers;
+	private FenxuiViewModel fenxuiViewModel;
 
 	public AbstractAppFactory(PageFactory pageFactory) {
 		this.pageFactory = pageFactory;
-		this.appAnnotationHandlers = pageFactory.getFactoryInitContext().getAppAnnotationHandlers();
 	}
 
-	public AppConstruction makeApp(FenxuiViewModel viewModel, FenxuiConfig fenxuiConfig) throws FenxuiInitializationException {
-		AppConstruction appConstruction = new AppConstruction(viewModel);
-		try {
-			Annotation[] annotations = viewModel.getClass().getAnnotations();
-			if (annotations != null) {
-				for (Annotation annotation: annotations) {
-					AppAnnotationHandler handler = appAnnotationHandlers.get(annotation.annotationType());
-					if (handler != null) {
-						handler.handle(appConstruction, annotation);
-					}
-				}
-			}
-			
-			int i = 0;
-			for (Field field : viewModel.getClass().getDeclaredFields()) {
-				Object applicationPage = FieldUtils.readField(field, viewModel, true);
-				ContentPane contentPane = pageFactory.makePage(applicationPage, fenxuiConfig, appConstruction);
-				contentPane.setVisible(i == 0);
-				appConstruction.addContentPane(contentPane);
-
-				for (Annotation annotation : field.getAnnotations()) {
-					AppAnnotationHandler handler = appAnnotationHandlers.get(annotation.annotationType());
-					if (handler != null) {
-						handler.handle(appConstruction, annotation);
-					}
-				}
-				i++;
-			}
-		} catch (IllegalAccessException | NoSuchMethodException ex) {
-			throw new FenxuiInitializationException(ex);
-		}
+	public Region makeApp(FenxuiConfig fenxuiConfig) throws FenxuiInitializationException {
+		AppConstruction appConstruction = new AppConstruction();
+		Region contentPane = pageFactory.makePage(fenxuiViewModel, fenxuiConfig, appConstruction);
 		appConstruction.postProcess();
 
-		return appConstruction;
+		return contentPane;
+	}
+
+	@Override
+	public void setViewModel(FenxuiViewModel fenxuiViewModel) {
+		this.fenxuiViewModel = fenxuiViewModel;
+	}
+	public FenxuiViewModel getViewModel() {
+		return fenxuiViewModel;
 	}
 
 	public PageFactory getPageFactory() {
