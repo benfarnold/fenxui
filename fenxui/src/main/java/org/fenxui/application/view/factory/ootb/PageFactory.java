@@ -1,13 +1,11 @@
 package org.fenxui.application.view.factory.ootb;
 
+import javafx.scene.layout.Region;
 import org.fenxui.application.config.FenxuiConfig;
 import org.fenxui.application.exception.FenxuiInitializationException;
-import org.fenxui.application.view.components.ContentPane;
-import org.fenxui.application.view.factory.FactoryInitContext;
 
 public interface PageFactory {
 
-	ContentPane makePage(Object applicationPage, FenxuiConfig fenxuiConfig, AppConstruction appConstruction) throws FenxuiInitializationException;
+	Region makePage(Object applicationPage, FenxuiConfig fenxuiConfig, FrameContext frameContext) throws FenxuiInitializationException;
 
-	FactoryInitContext getFactoryInitContext();
 }

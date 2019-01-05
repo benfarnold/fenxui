@@ -6,7 +6,7 @@ import org.apache.commons.logging.LogFactory;
 import org.fenxui.application.FenxuiApplication;
 import org.fenxui.application.config.FenxuiConfig;
 import org.fenxui.application.view.prototype.FenxuiPrototype;
-import org.fenxui.application.view.prototype.MenuAppPrototype;
+import org.fenxui.application.view.prototype.JFoenixPrototype;
 import org.fenxui.samples.viewmodel.SampleViewModel;
 
 public class SampleApp extends FenxuiApplication {
@@ -22,7 +22,7 @@ public class SampleApp extends FenxuiApplication {
 
 	@Override
 	public FenxuiPrototype getFenxuiPrototype() {
-		return MenuAppPrototype.newInstance(new SampleViewModel(), () -> {
+		return JFoenixPrototype.newInstance(new SampleViewModel(), () -> {
 			log.info("Application closing");
 			Platform.exit();
 		});

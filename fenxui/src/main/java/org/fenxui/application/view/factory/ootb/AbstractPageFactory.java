@@ -4,12 +4,13 @@ import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
 
+import javafx.scene.layout.Region;
 import org.fenxui.application.config.FenxuiConfig;
 import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.components.ContentPane;
+import org.fenxui.application.view.components.NavigablePage;
 import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.factory.FactoryInitContext;
-import org.fenxui.application.view.factory.FormActionFactory;
 import org.fenxui.application.view.factory.handler.page.PageAnnotationHandler;
 import org.fenxui.application.view.factory.handler.page.PageContext;
 import org.fenxui.application.view.factory.PageContentProcessor;
@@ -21,38 +22,39 @@ import org.fenxui.application.view.factory.PageContentProcessor;
  */
 public class AbstractPageFactory implements PageFactory {
 
-	private final PageContentProcessor formGridFactory;
-	private final FormActionFactory formActionFactory;
-	private final FactoryInitContext factoryInitContext;
+	private final PageContentProcessor pageContentProcessor;
 	private final Map<Class, PageAnnotationHandler> pageAnnotationHandlers;
 
-	public AbstractPageFactory(PageContentProcessor formRowFactory, FormActionFactory formActionFactory, FactoryInitContext factoryInitContext) {
-		this.formGridFactory = formRowFactory;
-		this.formActionFactory = formActionFactory;
-		this.factoryInitContext = factoryInitContext;
+	public AbstractPageFactory(PageContentProcessor pageContentProcessor, FactoryInitContext factoryInitContext) {
+		this.pageContentProcessor = pageContentProcessor;
 		this.pageAnnotationHandlers = factoryInitContext.getPageAnnotationHandlers();
+		pageContentProcessor.setPageFactory(this);
 	}
 
 	@Override
-	public ContentPane makePage(Object applicationPage, FenxuiConfig fenxuiConfig, AppConstruction appConstruction) throws FenxuiInitializationException {
-		ContentPane contentPane = new ContentPane();
-//		contentPane.setAlignment(fenxuiConfig.getAlignent());
+	public Region makePage(Object applicationPage, FenxuiConfig fenxuiConfig, FrameContext frameContext) throws FenxuiInitializationException {
 
-		PageContext pageContext = new PageContext(applicationPage, appConstruction);
+		PageContext pageContext = new PageContext(applicationPage, frameContext);
 		for (Annotation annotation : applicationPage.getClass().getAnnotations()) {
 			PageAnnotationHandler handler = pageAnnotationHandlers.get(annotation.annotationType());
 			if (handler != null) {
 				handler.handle(pageContext, annotation);
 			}
 		}
-		contentPane.getStyleClass().setAll(pageContext.getPageCss());
-		
-//		contentPane.getChildren().add(pageContext.getTitle());
-		
-		formGridFactory.processPageContent(pageContext, fenxuiConfig);
-		
-		List<FieldOption> fieldOptions = pageContext.getFieldOptions();
-		contentPane.addFields(fieldOptions);
+
+		pageContentProcessor.processPageContent(pageContext, fenxuiConfig);
+
+		Region region;
+		if (pageContext.getMenuOrientation() == null) {
+			region = new ContentPane();
+			List<FieldOption> fieldOptions = pageContext.getFieldOptions();
+			((ContentPane) region).addFields(fieldOptions);
+		} else {
+			region = new NavigablePage(pageContext.getMenuItems(), pageContext.getMenuOrientation(), pageContext.getMenuCssClass(), pageContext.getMenuMinWidth(), pageContext.getMenuMinHeight());
+		}
+		region.getStyleClass().setAll(pageContext.getPageCss());
+		//		contentPane.getChildren().add(pageContext.getTitle());
+
 //		contentPane.getChildren().add(gridPane);
 
 //		HBox hbBtn = formActionFactory.makeFormActionRow(applicationPage);
@@ -61,11 +63,7 @@ public class AbstractPageFactory implements PageFactory {
 //		contentPane.getChildren().add(1, new Label());//space after title
 //		contentPane.getChildren().add(4, new Label());//space above form submit button
 //		contentPane.setSpacing(10);
-		return contentPane;
+		return region;
 	}
 
-	@Override
-	public FactoryInitContext getFactoryInitContext() {
-		return factoryInitContext;
-	}
 }

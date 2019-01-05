@@ -1,11 +1,13 @@
 package org.fenxui.application.view.decorator;
 
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import org.fenxui.application.view.FenxuiViewModel;
 import org.fenxui.application.view.factory.ootb.AppFactory;
 
 public class AbstractDecorator<T> {
 
-	protected final ComponentDecorator<T, Object> decorator;
+	protected final ComponentDecorator<T> decorator;
 
 	public AbstractDecorator(ComponentDecorator decorator) {
 		this.decorator = decorator;
@@ -23,5 +25,14 @@ public class AbstractDecorator<T> {
 	
 	public AppFactory getAppFactory() {
 		return decorator.getAppFactory();
+	}
+
+	//convenience methods
+	protected FenxuiViewModel getViewModel() {
+		return getAppFactory().getViewModel();
+	}
+
+	protected Stage getStage() {
+		return getViewModel().getStage();
 	}
 }

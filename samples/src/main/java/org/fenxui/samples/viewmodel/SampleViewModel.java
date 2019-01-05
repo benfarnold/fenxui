@@ -4,6 +4,7 @@ import org.fenxui.annotation.app.Menu;
 import org.fenxui.annotation.app.MenuItem;
 import org.fenxui.application.view.FenxuiViewModel;
 import org.fenxui.samples.viewmodel.pages.MailSettings;
+import org.fenxui.samples.viewmodel.pages.TabbedSettings;
 import org.fenxui.samples.viewmodel.pages.ServerSettings;
 import org.fenxui.samples.viewmodel.pages.DatabaseSettings;
 
@@ -19,6 +20,9 @@ public class SampleViewModel extends FenxuiViewModel {
 	@MenuItem("Mail Settings")
 	private final MailSettings mailSettings = new MailSettings(this);
 
+	@MenuItem("Tabbed Settings")
+	private final TabbedSettings tabbedSettings = new TabbedSettings(this);
+
 	public ServerSettings getServerSettings() {
 		return serverSettings;
 	}
@@ -29,5 +33,9 @@ public class SampleViewModel extends FenxuiViewModel {
 
 	public MailSettings getMailSettings() {
 		return mailSettings;
+	}
+
+	public TabbedSettings getTabbedSettings() {
+		return tabbedSettings;
 	}
 }

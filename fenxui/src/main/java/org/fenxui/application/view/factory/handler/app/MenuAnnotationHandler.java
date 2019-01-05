@@ -1,15 +1,19 @@
 package org.fenxui.application.view.factory.handler.app;
 
-import java.lang.annotation.Annotation;
 import org.fenxui.annotation.app.Menu;
-import org.fenxui.application.view.factory.ootb.AppConstruction;
+import org.fenxui.application.view.factory.handler.page.PageAnnotationHandler;
+import org.fenxui.application.view.factory.ootb.FrameContext;
 
-public class MenuAnnotationHandler implements AppAnnotationHandler {
+import java.lang.annotation.Annotation;
+
+public class MenuAnnotationHandler implements PageAnnotationHandler {
 
 	@Override
-	public void handle(AppConstruction appConstruction, Annotation annotation) throws IllegalAccessException, NoSuchMethodException {
+	public void handle(FrameContext frameContext, Annotation annotation){
 		Menu menu = (Menu) annotation;
-		appConstruction.setMenuCssClass(menu.cssClass());
-		appConstruction.setMenuOrientation(menu.orientation());
+		frameContext.setMenuCssClass(menu.cssClass());
+		frameContext.setMenuOrientation(menu.orientation());
+		frameContext.setMenuMinWidth(menu.minimumWidth());
+		frameContext.setMenuMinHeight(menu.minimumHeight());
 	}
 }

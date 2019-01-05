@@ -4,8 +4,8 @@ import org.fenxui.application.config.FenxuiConfig;
 import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.factory.ootb.AppFactory;
 
-public interface ComponentDecorator<T, U> {
+public interface ComponentDecorator<T> {
 
-	T decorate(U u, FenxuiConfig fenxuiConfig) throws FenxuiInitializationException;
+	T decorate(FenxuiConfig fenxuiConfig) throws FenxuiInitializationException;
 	AppFactory getAppFactory();
 }
