@@ -24,9 +24,9 @@ public abstract class AbstractFrameContext implements FrameContext {
 
 	//logic methods
 	@Override
-	public void linkPage(String value, boolean required) {
+	public void linkPage(String value, boolean required, String cssClass) {
 		NamedHideable last = contentPanes.get(contentPanes.size()-1);
-		PageLink pageLink = new PageLink(value,  last, required);
+		PageLink pageLink = new PageLink(value,  last, required, cssClass);
 		menuItems.add(pageLink);
 	}
 

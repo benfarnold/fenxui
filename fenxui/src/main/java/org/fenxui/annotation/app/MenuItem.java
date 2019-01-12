@@ -14,7 +14,7 @@ public @interface MenuItem {
 
 	String value();
 
-	String cssClass() default "menu-text";
+	String cssClass() default "menupage-link";
 	
 	boolean required() default false;
 }

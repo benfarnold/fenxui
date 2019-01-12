@@ -4,8 +4,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class ReflectiveEventHandler<T extends Event> {
+	private static final Logger logger = LogManager.getLogger(ReflectiveEventHandler.class);
+
 	protected final Method method;
 	protected final Object pageModel;
 	protected final EventHandler<T> eventHandler;
@@ -22,12 +26,8 @@ public abstract class ReflectiveEventHandler<T extends Event> {
 		}
 		try {
 			method.invoke(pageModel, event);
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException ex) {
-			ex.printStackTrace();
+		} catch (IllegalAccessException|InvocationTargetException|IllegalArgumentException ex) {
+			logger.error("Trouble handling event", ex);
 		}
 	}
 }

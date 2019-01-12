@@ -1,19 +1,20 @@
 package org.fenxui.application.view.components;
 
-import com.jfoenix.controls.base.IFXValidatableControl;
-import java.util.List;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.SkinBase;
 import javafx.scene.layout.Region;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.fenxui.application.view.bind.widget.LayoutGridPane;
 import org.fenxui.application.view.bind.widget.UniqueValidatableControl;
 import org.fenxui.application.view.components.option.FieldOption;
 
+import java.util.List;
+
 public class ContentPaneSkin extends SkinBase<ContentPane> {
+	private static final Logger logger = LogManager.getLogger(ContentPaneSkin.class);
 
 	public ContentPaneSkin(ContentPane page) {
 		super(page);
@@ -24,19 +25,23 @@ public class ContentPaneSkin extends SkinBase<ContentPane> {
 		int i = 0;
 		for (; i < options.size(); i++) {
 			FieldOption option = options.get(i);
-			Node node = option.getType().create(option);
-			if (node instanceof IFXValidatableControl) {
-				node.focusedProperty().addListener(new ChangeListener<Boolean>() {
-						@Override
-						public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-							if (!newValue) {
-								boolean isValid = ((UniqueValidatableControl) node).validate();
-								page.votify(((UniqueValidatableControl) node).getUniqueId(), isValid);
-							}
-						}
-					});
+			if (logger.isTraceEnabled()) {
+				logger.trace("processing field: " + option.getFieldName());
 			}
-			boolean expanding = FieldOption.Type.TEXT_EXPANDING == option.getType();
+			Node node = option.getFieldFactory().create(option);
+			if (logger.isTraceEnabled()) {
+				logger.trace("field: " + option.getFieldName() + " created");
+			}
+			if (node instanceof UniqueValidatableControl) {
+				UniqueValidatableControl control = (UniqueValidatableControl) node;
+				node.focusedProperty().addListener((observable, oldValue, newValue) -> {
+					if (!newValue) {
+						boolean isValid = control.validate();
+						page.votify(control.getUniqueId(), isValid);
+					}
+				});
+			}
+			boolean expanding = option.isBindFieldToPaneWidth();
 
 			if (expanding) {
 				Region textField = (Region) node;

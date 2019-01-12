@@ -4,7 +4,6 @@ import javafx.scene.layout.Region;
 import org.fenxui.application.config.FenxuiConfig;
 import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.FenxuiViewModel;
-import org.fenxui.application.view.components.ContentPane;
 
 public abstract class AbstractAppFactory implements AppFactory {
 
@@ -27,6 +26,7 @@ public abstract class AbstractAppFactory implements AppFactory {
 	public void setViewModel(FenxuiViewModel fenxuiViewModel) {
 		this.fenxuiViewModel = fenxuiViewModel;
 	}
+	@Override
 	public FenxuiViewModel getViewModel() {
 		return fenxuiViewModel;
 	}

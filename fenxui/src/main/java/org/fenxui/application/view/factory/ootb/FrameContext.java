@@ -7,13 +7,13 @@ import org.fenxui.application.view.factory.handler.page.PageContext;
 
 public interface FrameContext {
 	void addPageContext(String name, PageContext pageContext);
-	void addPageScopedFieldPostProcessor(String className, FieldPostProcessor fieldPostProcessor);
+	void addPageScopedFieldPostProcessor(Class dependentClass, String requiredClassName, FieldPostProcessor fieldPostProcessor);
 
 	void setMenuCssClass(String cssClass);
 
 	void setMenuOrientation(Orientation orientation);
 
-	void linkPage(String value, boolean required);
+	void linkPage(String value, boolean required, String cssClass);
 
 	void setTitle(Label label);
 

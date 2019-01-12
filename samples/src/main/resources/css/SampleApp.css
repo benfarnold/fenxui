@@ -4,43 +4,31 @@
 }
 
 .menupage {
-	/*-fx-padding: 20.0, 10.0;*/
 	-fx-font-size: 15.0;
 	-fx-font-weight: NORMAL;
 	-fx-text-fill: #444;
 	-fx-background-color: WHITE;
 }
 
-.config-section-link {
+.menupage-link {
 	-fx-border-color:WHITE;
 	-fx-background-color: #5ca3ce;
-	/*-fx-base: #5ca3ce;*/
 	-fx-border-width: 0 1 1 1;
 }
-.config-section-link:hover {
+.tabpage-link:hover .menupage-link:hover {
 	-fx-color: -fx-hover-base;
 }
-.config-section-link:armed {
+.tabpage-link:armed, .menupage-link:armed {
 	-fx-color: -fx-pressed-base;
 	-fx-background-color: -fx-focus-color, -fx-inner-border, -fx-body-color, -fx-faint-focus-color, -fx-body-color;
 	-fx-background-insets: -0.2, 1, 2, -1.4, 2.6;
 	-fx-background-radius: 3, 2, 1, 4, 1;
 }
-.config-section-link:required-outstanding {
-	-fx-border-color: #3096d3;
+.tabpage-link {
+	-fx-border-color:WHITE;
+	-fx-background-color: #91c4e2; /*slightly lighter shade of blue*/
+	-fx-border-width: 0 1 1 1;
 }
-.config-section-link:required-satisfield {
-	-fx-border-color: #5ca3ce;
-}
-
-.encryption-tool {
-	-fx-padding: 20.0, 10.0;
-	-fx-font-size: 15.0;
-	-fx-font-weight: NORMAL;
-	-fx-text-fill: #444;
-	-fx-background-color: WHITE;
-}
-
 /**JFX Customizations*/
 .jfx-decorator {
 	-fx-decorator-color: derive(#64d2c2, -20%);
@@ -102,7 +90,6 @@
 }
 
 .jfx-list-cell:selected .label .custom-jfx-list-view-icon {
-	/*-fx-text-fill: #5264AE;*/
 	-fx-fill: #5264AE;
 	-fx-padding: 0.0 10.0 0.0 5.0;
 	-fx-cursor: hand;
