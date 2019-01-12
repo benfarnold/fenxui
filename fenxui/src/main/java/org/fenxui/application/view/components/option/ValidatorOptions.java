@@ -6,12 +6,12 @@ import org.fenxui.application.view.components.validator.FenxuiNumericValidator;
 import org.fenxui.application.view.components.validator.FenxuiRequiredFieldValidator;
 
 public enum ValidatorOptions {
-	REQUIRED{
+	REQUIRED {
 		@Override
 		public ValidatorBase create(String message) throws FenxuiInitializationException {
 			return new FenxuiRequiredFieldValidator(message);
 		}
-	}, NUMERIC{
+	}, NUMERIC {
 		@Override
 		public ValidatorBase create(String message) throws FenxuiInitializationException {
 			return new FenxuiNumericValidator(message);

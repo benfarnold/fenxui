@@ -16,18 +16,14 @@ public class PageLink extends Control {
 
 	private boolean selectByDefault;
 
-	public PageLink(String name, NamedHideable page, boolean required) {
+	public PageLink(String name, NamedHideable page, boolean required, String menuCssClass) {
 		this.name.set(name);
 		this.page = page;
 		this.required.set(required);
 		page.setName(name);
 		// Region is not focus traversable by default, so we enable it here
 		setFocusTraversable(true);
-		getStyleClass().add("config-section-link");
-	}
-
-	public PageLink(String name, NamedHideable page) {
-		this(name, page, false);
+		getStyleClass().add(menuCssClass);
 	}
 
 	public NamedHideable getPage() {

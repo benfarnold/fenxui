@@ -8,7 +8,7 @@ import org.apache.commons.jexl3.JexlEngine;
 import org.apache.commons.jexl3.JexlExpression;
 
 
-public class EvaluableCondition {
+public class EvaluableCondition implements JexlEvaluable {
 	private final String expression;
 	private final BooleanProperty state = new SimpleBooleanProperty(false);
 
@@ -16,7 +16,8 @@ public class EvaluableCondition {
 		this.expression = expression;
 	}
 
-	protected void evaluate(JexlContext context) {
+	@Override
+	public void evaluate(JexlContext context) {
 		JexlEngine jexl = new JexlBuilder().create();
 		JexlExpression e = jexl.createExpression(expression);
 		Boolean result = (Boolean) e.evaluate(context);

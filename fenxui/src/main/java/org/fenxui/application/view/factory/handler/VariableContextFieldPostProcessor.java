@@ -1,5 +1,6 @@
 package org.fenxui.application.view.factory.handler;
 
+import javafx.beans.property.Property;
 import javafx.beans.property.StringProperty;
 import org.fenxui.application.el.VariableContext;
 import org.fenxui.application.view.components.option.FieldOption;
@@ -17,9 +18,16 @@ public class VariableContextFieldPostProcessor implements FieldPostProcessor {
 
 	@Override
 	public void postProcess(FieldOption fieldOption) {
-		if (fieldOption.getFieldName().equalsIgnoreCase(fieldName)) {
-			StringProperty value = fieldOption.getValue();
-			variableContext.addVariable(variableName, value);
-		}
+		Property value = fieldOption.getValue();
+		variableContext.addVariable(variableName, value);
+	}
+
+	@Override
+	public String getFieldName() {
+		return fieldName;
+	}
+
+	public VariableContext getVariableContext() {
+		return variableContext;
 	}
 }

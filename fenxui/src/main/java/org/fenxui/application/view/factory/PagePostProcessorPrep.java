@@ -12,7 +12,7 @@ public class PagePostProcessorPrep {
 
 	public void prepare(PageContext pageContext) throws FenxuiInitializationException {
 		fieldPostProcessorList.forEach(fieldPostProcessor -> {
-			pageContext.addPostProcessor(fieldPostProcessor);
+			pageContext.addPostProcessor(fieldPostProcessor.getFieldName(), fieldPostProcessor.getFieldName(), fieldPostProcessor);
 		});
 	}
 

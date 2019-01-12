@@ -4,4 +4,6 @@ mainClassName = 'org.fenxui.samples.SampleApp'
 
 dependencies {
 	compile project(':fenxui')
+	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
 }

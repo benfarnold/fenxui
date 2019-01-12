@@ -1,0 +1,95 @@
+.root {
+	-fx-font-family: "Roboto";
+	-fx-font-smoothing-type: gray;
+}
+
+.menupage {
+	/*-fx-padding: 20.0, 10.0;*/
+	-fx-font-size: 15.0;
+	-fx-font-weight: NORMAL;
+	-fx-text-fill: #444;
+	-fx-background-color: WHITE;
+}
+
+.menupage-link {
+	-fx-border-color:WHITE;
+	-fx-background-color: #5ca3ce;
+	/*-fx-base: #5ca3ce;*/
+	-fx-border-width: 0 1 1 1;
+}
+.menupage-link:hover {
+	-fx-color: -fx-hover-base;
+}
+.menupage-link:armed {
+	-fx-color: -fx-pressed-base;
+	-fx-background-color: -fx-focus-color, -fx-inner-border, -fx-body-color, -fx-faint-focus-color, -fx-body-color;
+	-fx-background-insets: -0.2, 1, 2, -1.4, 2.6;
+	-fx-background-radius: 3, 2, 1, 4, 1;
+}
+
+/**JFX Customizations*/
+.jfx-decorator {
+	-fx-decorator-color: derive(#64d2c2, -20%);
+}
+.jfx-decorator .resize-border {
+	-fx-border-color: -fx-decorator-color;
+	-fx-border-width: 0 4 4 4;
+}
+
+.jfx-decorator .jfx-decorator-title-container .jfx-decorator-text {
+	-fx-fill: WHITE;
+	-fx-font-size: 16;
+}
+
+.jfx-decorator .jfx-decorator-title-container .jfx-svg-glyph {
+	-fx-shape: "M512 682c-128.024-99.309-255.626-199.040-384-298l384-298 384 298c-128.375 98.958-255.974 198.693-384 298zM512 792l314-246 70 54-384 298-384-298 70-54z";
+	-jfx-size: 15;
+	-fx-background-color: WHITE;
+}
+.jfx-text-field, .jfx-password-field {
+	-fx-background-color: WHITE;
+	-fx-font-weight: BOLD;
+	-fx-prompt-text-fill: #808080;
+	-fx-alignment: top-left;
+	-jfx-focus-color: #4059A9;
+	-jfx-unfocus-color: #4d4d4d;
+	-fx-max-width: 300;
+}
+.jfx-list-cell {
+	-fx-background-insets: 0.0;
+	-fx-text-fill: BLACK;
+}
+
+.jfx-list-cell:odd,
+.jfx-list-cell:even {
+	-fx-background-color: WHITE;
+}
+
+.jfx-list-cell:filled:hover,
+.jfx-list-cell:selected .label {
+	-fx-text-fill: black;
+}
+
+.jfx-list-cell .jfx-rippler {
+	-jfx-rippler-fill: #5264AE;
+}
+
+.jfx-list-cell:odd:selected > .jfx-rippler > StackPane,
+.jfx-list-cell:even:selected > .jfx-rippler > StackPane {
+	-fx-background-color: rgba(0.0, 0.0, 255.0, 0.2);
+}
+
+.jfx-list-view {
+	-fx-background-insets: 0.0;
+	-jfx-cell-horizontal-margin: 0.0;
+	-jfx-cell-vertical-margin: 5.0;
+	-jfx-vertical-gap: 10.0;
+	-jfx-expanded: false;
+}
+
+.jfx-list-cell:selected .label .custom-jfx-list-view-icon {
+	/*-fx-text-fill: #5264AE;*/
+	-fx-fill: #5264AE;
+	-fx-padding: 0.0 10.0 0.0 5.0;
+	-fx-cursor: hand;
+}

@@ -16,7 +16,7 @@ public class MenuItemAnnotationHandler implements AnnotationHandler {
 	public void handle(NodeContext nodeContext, Annotation annotation) {
 		MenuItem menuItem = (MenuItem) annotation;
 		FrameContext frameContext = nodeContext.getPageContext();
-		frameContext.linkPage(menuItem.value(), menuItem.required());
+		frameContext.linkPage(menuItem.value(), menuItem.required(), menuItem.cssClass());
 	}
 
 }

@@ -12,11 +12,7 @@ public class ValueProviderValueAnnotationHandler implements AnnotationHandler {
 	public void handle(NodeContext fieldContext, Annotation annotation) {
 		ValueProviderValue value = (ValueProviderValue) annotation;
 		FieldOption fieldOption = fieldContext.getActiveFieldOption();
-		StaticValueProvider valueProvider = fieldOption.getValueProvider();
-		if (valueProvider == null) {
-			valueProvider = new StaticValueProvider();
-			fieldOption.setValueProvider(valueProvider);
-		}
+		StaticValueProvider valueProvider = (StaticValueProvider) fieldOption.getOrDefaultValueProvider();
 		valueProvider.addValue(new DisplayValue(value.key(), value.value()));
 	}	
 
