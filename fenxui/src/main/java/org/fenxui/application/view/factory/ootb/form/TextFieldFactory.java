@@ -19,6 +19,7 @@ public class TextFieldFactory extends AbstractFieldFactory {
 			textField.setValidators(validatorArray);
 		}
 		textField.editableProperty().bind(option.readOnlyProperty().not());
+//		textField.disableProperty().bind(option.readOnlyProperty());
 
 		option.executeMarshallStrategy(textField);
 

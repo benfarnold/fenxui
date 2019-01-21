@@ -1,5 +1,7 @@
 package org.fenxui.annotation;
 
+import org.fenxui.application.view.factory.FactoryInitContext;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -12,5 +14,19 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface FormAction {
 
+	/**
+	 * Display value
+	 */
 	String value();
+
+	/**
+	 * factory to use to display.
+	 * By default will use "button"
+	 */
+	String factory() default FactoryInitContext.ActionPrototype.BUTTON_ACTION;
+
+	/**
+	 * CSS class used to style the widget
+	 */
+	String cssClass() default "button-raised";
 }

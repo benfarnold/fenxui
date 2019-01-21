@@ -11,7 +11,7 @@ import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.factory.ootb.form.marshall.DoubleMarshallStrategy;
 import org.fenxui.application.view.factory.ootb.form.marshall.IntegerMarshallStrategy;
 
-public class FormFieldAnnotationHandler implements AnnotationHandler {
+public class FormFieldAnnotationHandler implements FieldAnnotationHandler {
 
 	@Override
 	public void handle(NodeContext fieldContext, Annotation annotation) throws FenxuiInitializationException {
@@ -21,6 +21,7 @@ public class FormFieldAnnotationHandler implements AnnotationHandler {
 		fieldOption.setLayoutSection(formField.section());
 		fieldOption.setFieldFactory(fieldContext.getFieldFactory(formField.factory()));
 		fieldOption.setBindFieldToPaneWidth(formField.dynamicWidth());
+		fieldOption.setReadOnly(formField.readOnly());
 
 		Property valueField = fieldOption.getValue();
 		if (valueField instanceof IntegerProperty) {

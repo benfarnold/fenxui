@@ -1,8 +1,8 @@
 package org.fenxui.application.view.bind.widget;
 
-import javafx.scene.control.Button;
+import com.jfoenix.controls.JFXButton;
 
-public class FenxuiButton extends Button implements ActionableWidget {
+public class FenxuiButton extends JFXButton implements ActionableWidget {
 
 	public FenxuiButton(String value) {
 		super(value);

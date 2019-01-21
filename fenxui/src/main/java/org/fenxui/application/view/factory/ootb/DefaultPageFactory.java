@@ -5,7 +5,12 @@ import org.fenxui.application.view.factory.FactoryInitContext;
 public class DefaultPageFactory extends AbstractPageFactory {
 
 	public DefaultPageFactory(FactoryInitContext factoryInitContext) {
-		super(new DefaultPageContentProcessor(factoryInitContext.getFormFieldAnnotationHandlers(), factoryInitContext.getFieldFactories()), factoryInitContext);
+		super(new DefaultPageContentProcessor(
+						factoryInitContext.getFormFieldAnnotationHandlers(),
+						factoryInitContext.getMethodAnnotationHandlers(),
+						factoryInitContext.getFieldFactories(),
+						factoryInitContext.getActionFactories()
+				), factoryInitContext);
 	}
 
 }

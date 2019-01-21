@@ -11,13 +11,14 @@ import org.fenxui.application.view.components.ContentPane;
 import org.fenxui.application.view.components.NavigablePage;
 import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.factory.FactoryInitContext;
+import org.fenxui.application.view.factory.handler.action.MethodOption;
 import org.fenxui.application.view.factory.handler.page.PageAnnotationHandler;
 import org.fenxui.application.view.factory.handler.page.PageContext;
 import org.fenxui.application.view.factory.PageContentProcessor;
 
 /**
  * Lays out page as a grid within a vbox vbox: title, grid grid: Row 1....n form
- * elements 1..n (A form element is typically a label and a field, but may also
+ * elements 1..n (A form element is typically a value and a field, but may also
  * include a button that populates the field) Row n+1 form action buttons row
  */
 public class AbstractPageFactory implements PageFactory {
@@ -49,6 +50,8 @@ public class AbstractPageFactory implements PageFactory {
 			region = new ContentPane();
 			List<FieldOption> fieldOptions = pageContext.getFieldOptions();
 			((ContentPane) region).addFields(fieldOptions);
+			List<MethodOption> methodOptions = pageContext.getMethodOptions();
+			((ContentPane) region).addActionWidgets(methodOptions);
 		} else {
 			region = new NavigablePage(pageContext.getMenuItems(), pageContext.getMenuOrientation(), pageContext.getMenuCssClass(), pageContext.getMenuMinWidth(), pageContext.getMenuMinHeight());
 		}

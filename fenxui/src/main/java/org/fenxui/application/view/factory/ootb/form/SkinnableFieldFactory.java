@@ -31,6 +31,7 @@ public abstract class SkinnableFieldFactory extends AbstractFieldFactory {
 			skinnableNumberField.setValidators(validatorArray);
 		}
 		skinnableNumberField.editableProperty().bind(option.readOnlyProperty().not());
+//		skinnableNumberField.disableProperty().bind(option.readOnlyProperty());
 		updateMarshallStrategy(option);
 		option.executeMarshallStrategy(skinnableNumberField);
 		return skinnableNumberField;

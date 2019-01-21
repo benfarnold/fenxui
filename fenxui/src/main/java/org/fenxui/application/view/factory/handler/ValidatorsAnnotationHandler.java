@@ -5,7 +5,7 @@ import org.fenxui.annotation.Validator;
 import org.fenxui.annotation.Validators;
 import org.fenxui.application.exception.FenxuiInitializationException;
 
-public class ValidatorsAnnotationHandler implements AnnotationHandler {
+public class ValidatorsAnnotationHandler implements FieldAnnotationHandler {
 	//We may need to do a lookup for handler in future to handle overriden handlers
 	private final ValidatorAnnotationHandler handler = new ValidatorAnnotationHandler();
 	

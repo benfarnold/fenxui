@@ -5,6 +5,7 @@ import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.factory.ContextGraph;
 import org.fenxui.application.view.factory.GraphRunner;
 import org.fenxui.application.view.factory.handler.FieldPostProcessor;
+import org.fenxui.application.view.factory.handler.action.MethodOption;
 import org.fenxui.application.view.factory.ootb.FrameContext;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class PageContext extends AbstractFrameContext implements FrameContext {
 	private final FrameContext frameContext;
 
 	private List<FieldOption> fieldOptions = new ArrayList<>();
+	private List<MethodOption> methodOptions = new ArrayList<>();
 	private final Map<String, FieldOption> fieldContextMap = new HashMap<>();
 	private ContextGraph contextGraph = new ContextGraph();
 
@@ -54,6 +56,14 @@ public class PageContext extends AbstractFrameContext implements FrameContext {
 	public void addFieldOption(FieldOption option) {
 		fieldOptions.add(option);
 		fieldContextMap.put(option.getFieldName(), option);
+	}
+
+	public List<MethodOption> getMethodOptions() {
+		return methodOptions;
+	}
+
+	public void addMethodOption(MethodOption option) {
+		methodOptions.add(option);
 	}
 
 	public void addPageContext(String name, PageContext pageContext) {

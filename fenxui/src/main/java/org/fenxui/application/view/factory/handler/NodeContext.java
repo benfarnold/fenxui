@@ -1,26 +1,27 @@
 package org.fenxui.application.view.factory.handler;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import javafx.scene.Node;
 import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.components.option.FieldOption;
+import org.fenxui.application.view.factory.handler.action.MethodOption;
 import org.fenxui.application.view.factory.handler.page.PageContext;
 import org.fenxui.application.view.factory.ootb.form.FieldFactory;
+import org.fenxui.application.view.factory.ootb.form.action.ActionFactory;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Map;
 
 public class NodeContext {
 	private Node node;
-	private final Field field;
 	private final Object source;
-	private final FieldOption activeFieldOption;
+	private FieldOption activeFieldOption;
+	private MethodOption activeMethodOption;
 	private final PageContext pageContext;
-	private final Map<String, FieldFactory> fieldFactories;
+	private Map<String, FieldFactory> fieldFactories;
+	private Map<String, ActionFactory> actionFactories;
 
 	public NodeContext(Field field, Object source, PageContext pageContext, Map<String, FieldFactory> fieldFactories) {
-		this.field = field;
 		this.source = source;
 		this.activeFieldOption = new FieldOption(field.getName());
 		this.pageContext = pageContext;
@@ -28,20 +29,28 @@ public class NodeContext {
 		pageContext.addFieldOption(activeFieldOption);
 	}
 
+	public NodeContext(Method method, Object source, PageContext pageContext, Map<String, ActionFactory> actionFactories) {
+		this.source = source;
+		this.activeMethodOption = new MethodOption(method, source);
+		this.pageContext = pageContext;
+		this.actionFactories = actionFactories;
+		pageContext.addMethodOption(activeMethodOption);
+	}
+
 	public FieldOption getActiveFieldOption() {
 		return activeFieldOption;
 	}
-	
+
+	public MethodOption getActiveMethodOption() {
+		return activeMethodOption;
+	}
+
 	public void setNode(Node node) {
 		this.node = node;
 	}
 
 	public Node getNode() {
 		return node;
-	}
-
-	public Field getField() {
-		return field;
 	}
 
 	public Object getSource() {
@@ -58,6 +67,14 @@ public class NodeContext {
 			throw new FenxuiInitializationException("Unknown field type: " + name);
 		}
 		return fieldFactory;
+	}
+
+	public ActionFactory getActionFactory(String name) throws FenxuiInitializationException {
+		ActionFactory actionFactory = actionFactories.get(name);
+		if (actionFactory == null) {
+			throw new FenxuiInitializationException("Unknown field type: " + name);
+		}
+		return actionFactory;
 	}
 
 }
