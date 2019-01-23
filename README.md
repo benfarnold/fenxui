@@ -34,7 +34,7 @@ public class SampleApp extends FenxuiApplication {
 
 	@Override
 	public FenxuiPrototype getFenxuiPrototype() {
-		return JFoenixPrototype.newInstance(new SampleViewModel(), () -> {
+		return JFX8Prototype.newInstance(new SampleViewModel(), () -> {
 			log.info("Application closing");
 			Platform.exit();
 		});
@@ -89,7 +89,7 @@ public class ServerSettings {
 ### @FormField
 Declares a user-input field
 * label
-* factory (default "text") supported out the box values are listed as constants in FactoryInitContext.FieldPrototype.  You also have the ability to register custom field types as long as you also register the factory.
+* factory (default "text") supported out the box values are listed as constants in OOTBFieldPrototypes.  You also have the ability to register custom field types as long as you also register the factory.
 * section (If the field is hidden by default (ADDITIONAL) or displayed by default (DEFAULT); default DEFAULT)
 * dynamicWidth (default false).  True if the field width should be bound to the page width. 
 
@@ -106,7 +106,7 @@ private final StringProperty machine = new SimpleStringProperty();
 Declares a field that is populated by a JEXL expression.
 * label
 * expression  (ie: "#{fieldA} + #{fieldB} + #{OtherClass.fieldZ}")
-* factory (default "text") supported out the box values are listed as constants in FactoryInitContext.FieldPrototype.  You also have the ability to register custom field types as long as you also register the factory.
+* factory (default "text") supported out the box values are listed as constants in OOTBFieldPrototypes.  You also have the ability to register custom field types as long as you also register the factory.
 * dynamicWidth (default false).  True if the field width should be bound to the page width. 
 * readOnly (default true).
 
@@ -159,8 +159,8 @@ Enables validation on the field.  A message will be displayed below the field wh
 * evalExpression (JEXL-expression that controls if validation should be enforced on supporting validators)
 
 ```java
-@Validator(type = ValidatorOptions.REQUIRED, message = "Port is required")
-@Validator(type = ValidatorOptions.NUMERIC, message = "Port must be numeric")
+@Validator(type = OOTBFieldValidators.REQUIRED, message = "Port is required")
+@Validator(type = OOTBFieldValidators.NUMERIC, message = "Port must be numeric")
 private final StringProperty port = new SimpleStringProperty("8080");
 
 @FormField(label = "Enable notifications", type=CHECKBOX)
@@ -168,7 +168,7 @@ private final StringProperty port = new SimpleStringProperty("8080");
 private final StringProperty enableNotifications = new SimpleStringProperty("false");
 
 @FormField(label = "From email")
-@Validator(type = ValidatorOptions.REQUIRED, message = "From email is required", evalExpression="#{enableNotifications} eq 'true'")
+@Validator(type = OOTBFieldValidators.REQUIRED, message = "From email is required", evalExpression="#{enableNotifications} eq 'true'")
 private final StringProperty senderAddress = new SimpleStringProperty();
 ```
 ![Conditional validator on value in same form](https://user-images.githubusercontent.com/3435255/50727761-97b49a80-10ed-11e9-85b1-e47e2b4d2e20.png)
@@ -177,7 +177,7 @@ private final StringProperty senderAddress = new SimpleStringProperty();
 public class SimpleTabPageB {
 
   @FormField(label = "Required when Tab A enabled")
-  @Validator(type = ValidatorOptions.REQUIRED, message = "From email is required", evalExpression="#{SimpleTabPageA.enable} eq 'true'")
+  @Validator(type = OOTBFieldValidators.REQUIRED, message = "From email is required", evalExpression="#{SimpleTabPageA.enable} eq 'true'")
   private final StringProperty conditionallyRequiredField = new SimpleStringProperty();
 
 @AppPage("Tab A")
@@ -188,6 +188,18 @@ public class SimpleTabPageA  {
 	private final StringProperty enable = new SimpleStringProperty("false");
 ```
 ![Conditional validator on value in different form](https://user-images.githubusercontent.com/3435255/50727762-97b49a80-10ed-11e9-8591-ebca8b94b89e.png)
+
+### @FormAction
+Declares a method to be executed by a widget's onAction() listener.
+* value (Text displayed on button/widget)
+* factory (default: OOTBActionPrototype.BUTTON_ACTION)
+* cssClass (default: "button-raised")
+```
+@FormAction("Reverse")
+public void reverse(Event event) {
+	reversed.set(StringUtils.reverse(data.get()));
+}
+```
 
 ## Built With
 * [Gradle](https://gradle.org/) - Dependency Management
