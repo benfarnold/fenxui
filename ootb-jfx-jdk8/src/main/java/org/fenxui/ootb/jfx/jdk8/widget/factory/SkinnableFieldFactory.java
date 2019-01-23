@@ -28,6 +28,7 @@ public abstract class SkinnableFieldFactory implements FieldFactory<FieldOption>
 		SkinnableNumberField skinnableNumberField = getNewInstance();
 		skinnableNumberField.setFenxuiValidators(option.getValidators());
 		skinnableNumberField.editableProperty().bind(option.readOnlyProperty().not());
+//		skinnableNumberField.disableProperty().bind(option.readOnlyProperty());
 		updateMarshallStrategy(option);
 		option.executeMarshallStrategy(skinnableNumberField);
 		return skinnableNumberField;

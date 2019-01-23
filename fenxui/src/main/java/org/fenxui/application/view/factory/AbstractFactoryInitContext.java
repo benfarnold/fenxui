@@ -4,9 +4,12 @@ import org.fenxui.annotation.*;
 import org.fenxui.annotation.app.Menu;
 import org.fenxui.annotation.app.MenuItem;
 import org.fenxui.annotation.el.ExpressionFormField;
+import org.fenxui.api.factory.ActionFactory;
 import org.fenxui.api.factory.FieldFactory;
 import org.fenxui.api.factory.ValidatorFactory;
 import org.fenxui.application.view.factory.handler.*;
+import org.fenxui.application.view.factory.handler.action.FormActionAnnotationHandler;
+import org.fenxui.application.view.factory.handler.action.MethodAnnotationHandler;
 import org.fenxui.application.view.factory.handler.app.MenuAnnotationHandler;
 import org.fenxui.application.view.factory.handler.app.MenuItemAnnotationHandler;
 import org.fenxui.application.view.factory.handler.el.ExpressionFormFieldAnnotationHandler;
@@ -22,33 +25,44 @@ import java.util.Map;
  */
 public abstract class AbstractFactoryInitContext {
 
-	private Map<Class, AnnotationHandler> formFieldAnnotationHandlers = FormFactoryPrototype.getDefaultHandlers();
+	private Map<Class, FieldAnnotationHandler> formFieldAnnotationHandlers = FormFactoryPrototype.getDefaultHandlers();
 	private Map<Class, PageAnnotationHandler> pageAnnotationHandlers = PageFactoryPrototype.getDefaultHandlers();
+	private Map<Class, MethodAnnotationHandler> methodAnnotationHandlers = FormActionFactoryPrototype.getDefaultHandlers();
 
 	private Map<String, FieldFactory> fieldFactories;
 	private Map<String, ValidatorFactory> validatorFactories;
+	private Map<String, ActionFactory> actionFactories;
 
-	public AbstractFactoryInitContext(Map<String, FieldFactory> fieldFactories, Map<String, ValidatorFactory> validatorFactories) {
+	public AbstractFactoryInitContext(Map<String, FieldFactory> fieldFactories, Map<String, ValidatorFactory> validatorFactories, Map<String, ActionFactory> actionFactories) {
 		this.fieldFactories = fieldFactories;
 		this.validatorFactories = validatorFactories;
+		this.actionFactories = actionFactories;
 	}
 
 	public AbstractFactoryInitContext(Map<String, FieldFactory> fieldFactories) {
-		this(fieldFactories, new HashMap<>());
+		this(fieldFactories, new HashMap<>(), new HashMap<>());
 	}
 
-	public Map<Class, AnnotationHandler> getFormFieldAnnotationHandlers() {
+	public Map<Class, FieldAnnotationHandler> getFormFieldAnnotationHandlers() {
 		return formFieldAnnotationHandlers;
 	}
 	public Map<Class, PageAnnotationHandler> getPageAnnotationHandlers() {
 		return pageAnnotationHandlers;
 	}
 
-	public void setFormFieldAnnotationHandlers(Map<Class, AnnotationHandler> formFieldAnnotationHandlers) {
+	public Map<Class, MethodAnnotationHandler> getMethodAnnotationHandlers() {
+		return methodAnnotationHandlers;
+	}
+
+	public void setFormFieldAnnotationHandlers(Map<Class, FieldAnnotationHandler> formFieldAnnotationHandlers) {
 		this.formFieldAnnotationHandlers = formFieldAnnotationHandlers;
 	}
 	public void setPageAnnotationHandlers(Map<Class, PageAnnotationHandler> pageAnnotationHandlers) {
 		this.pageAnnotationHandlers = pageAnnotationHandlers;
+	}
+
+	public void setMethodAnnotationHandlers(Map<Class, MethodAnnotationHandler> methodAnnotationHandlers) {
+		this.methodAnnotationHandlers = methodAnnotationHandlers;
 	}
 
 	public Map<String, FieldFactory> getFieldFactories() {
@@ -67,13 +81,21 @@ public abstract class AbstractFactoryInitContext {
 		this.validatorFactories = validatorFactories;
 	}
 
+	public Map<String, ActionFactory> getActionFactories() {
+		return actionFactories;
+	}
+
+	public void setActionFactories(Map<String, ActionFactory> actionFactories) {
+		this.actionFactories = actionFactories;
+	}
+
 	/**
 	 * Handlers scoped to fields
 	 */
 	public interface FormFactoryPrototype {
 
-		static Map<Class, AnnotationHandler> getDefaultHandlers() {
-			Map<Class, AnnotationHandler> handlers = new HashMap<>();
+		static Map<Class, FieldAnnotationHandler> getDefaultHandlers() {
+			Map<Class, FieldAnnotationHandler> handlers = new HashMap<>();
 			handlers.put(FormField.class, new FormFieldAnnotationHandler());
 			handlers.put(Validator.class, new ValidatorAnnotationHandler());
 			handlers.put(Validators.class, new ValidatorsAnnotationHandler());
@@ -99,4 +121,14 @@ public abstract class AbstractFactoryInitContext {
 		}
 	}
 
+	/**
+	 * Handlers scoped to methods
+	 */
+	public interface FormActionFactoryPrototype {
+		static Map<Class, MethodAnnotationHandler> getDefaultHandlers() {
+			Map<Class, MethodAnnotationHandler> handlers = new HashMap<>();
+			handlers.put(FormAction.class, new FormActionAnnotationHandler());
+			return handlers;
+		}
+	}
 }

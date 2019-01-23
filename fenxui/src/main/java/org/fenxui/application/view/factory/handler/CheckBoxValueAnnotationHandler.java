@@ -7,7 +7,7 @@ import org.fenxui.application.view.components.option.FieldOption.DisplayValue;
 import org.fenxui.application.view.components.valueprovider.StaticValueProvider;
 import org.fenxui.core.exception.FenxuiInitializationException;
 
-public class CheckBoxValueAnnotationHandler implements AnnotationHandler {
+public class CheckBoxValueAnnotationHandler implements FieldAnnotationHandler {
 
 	@Override
 	public void handle(NodeContext fieldContext, Annotation annotation) throws FenxuiInitializationException {

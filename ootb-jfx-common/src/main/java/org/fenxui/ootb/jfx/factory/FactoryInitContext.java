@@ -1,9 +1,11 @@
 package org.fenxui.ootb.jfx.factory;
 
+import org.fenxui.api.factory.ActionFactory;
 import org.fenxui.api.factory.FieldFactory;
 import org.fenxui.api.factory.ValidatorFactory;
 import org.fenxui.api.prototype.OOTBFieldValidators;
 import org.fenxui.application.view.factory.AbstractFactoryInitContext;
+import org.fenxui.ootb.jfx.factory.action.ButtonActionFactory;
 import org.fenxui.ootb.jfx.factory.field.CheckBoxFieldFactory;
 import org.fenxui.ootb.jfx.factory.field.PasswordFieldFactory;
 import org.fenxui.ootb.jfx.factory.field.SelectFieldFactory;
@@ -14,12 +16,16 @@ import org.fenxui.ootb.jfx.factory.validator.RequiredFieldValidatorFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.fenxui.api.prototype.OOTBActionPrototype.BUTTON_ACTION;
 import static org.fenxui.api.prototype.OOTBFieldPrototypes.*;
 
 public class FactoryInitContext extends AbstractFactoryInitContext {
 
 	public FactoryInitContext() {
-		super(FieldPrototype.getDefaultCustomFieldFactories(), ValidatorPrototype.getDefaultValidatorFactories());
+		super(FieldPrototype.getDefaultCustomFieldFactories(),
+				ValidatorPrototype.getDefaultValidatorFactories(),
+				ActionPrototype.getDefaultActionFactories()
+		);
 	}
 
 	/**
@@ -42,6 +48,17 @@ public class FactoryInitContext extends AbstractFactoryInitContext {
 			Map<String, ValidatorFactory> factories = new HashMap<>();
 			factories.put(OOTBFieldValidators.NUMERIC, new NumericFieldValidatorFactory());
 			factories.put(OOTBFieldValidators.REQUIRED, new RequiredFieldValidatorFactory());
+			return factories;
+		}
+	}
+
+	/**
+	 * Custom widget types allowing you to customize skins of buttons, etc
+	 */
+	public interface ActionPrototype {
+		static Map<String, ActionFactory> getDefaultActionFactories() {
+			Map<String, ActionFactory> factories = new HashMap<>();
+			factories.put(BUTTON_ACTION, new ButtonActionFactory());
 			return factories;
 		}
 	}

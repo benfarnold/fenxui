@@ -5,14 +5,14 @@ import org.fenxui.annotation.el.ExpressionFormField;
 import org.fenxui.application.el.*;
 import org.fenxui.application.marshall.IntegerMarshallStrategy;
 import org.fenxui.application.view.components.option.FieldOption;
-import org.fenxui.application.view.factory.handler.AnnotationHandler;
+import org.fenxui.application.view.factory.handler.FieldAnnotationHandler;
 import org.fenxui.application.view.factory.handler.NodeContext;
 import org.fenxui.application.view.factory.handler.page.PageContext;
 import org.fenxui.core.exception.FenxuiInitializationException;
 
 import java.lang.annotation.Annotation;
 
-public class ExpressionFormFieldAnnotationHandler implements AnnotationHandler {
+public class ExpressionFormFieldAnnotationHandler implements FieldAnnotationHandler {
 
 	@Override
 	public void handle(NodeContext fieldContext, Annotation annotation) throws FenxuiInitializationException {

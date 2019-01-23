@@ -24,7 +24,7 @@ public class NetWorthViewModel extends FenxuiViewModel {
 		return liabilities;
 	}
 
-//	public Summary getSummary() {
-//		return summary;
-//	}
+	public Summary getSummary() {
+		return summary;
+	}
 }

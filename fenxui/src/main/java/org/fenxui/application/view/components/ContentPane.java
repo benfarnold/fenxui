@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Control;
@@ -13,6 +13,7 @@ import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import org.fenxui.application.view.components.option.ColorOptions;
 import org.fenxui.application.view.components.option.FieldOption;
+import org.fenxui.application.view.components.option.MethodOption;
 
 /**
  * What the @AppPage ends up being displayed in
@@ -22,6 +23,7 @@ public class ContentPane extends Control implements NamedHideable {
 	private final ObjectProperty<Paint> linkHintColor = new SimpleObjectProperty<>();
 	private Map<String, Integer> validity = new HashMap<>();//1. error  0.  okay
 	private final List<FieldOption> options = new ArrayList<>();
+	private final List<MethodOption> actionOptions = new ArrayList<>();
 	private int validatableFields = 0;
 	
 	public ContentPane() {
@@ -42,6 +44,10 @@ public class ContentPane extends Control implements NamedHideable {
 		return options;
 	}
 
+	public List<MethodOption> getActionOptions() {
+		return actionOptions;
+	}
+
 	public void addFields(List<FieldOption> fieldOptions) {
 		if (fieldOptions != null) {
 			fieldOptions.stream().forEach(option-> {
@@ -49,6 +55,14 @@ public class ContentPane extends Control implements NamedHideable {
 				if (option.getValidators() != null || !option.getValidators().isEmpty()) {
 					validatableFields++;
 				}
+			});
+		}
+	}
+
+	public void addActionWidgets(List<MethodOption> methodOptions) {
+		if (methodOptions != null) {
+			methodOptions.stream().forEach(option-> {
+				actionOptions.add(option);
 			});
 		}
 	}

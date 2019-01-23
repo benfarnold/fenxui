@@ -15,7 +15,7 @@ import org.fenxui.application.view.components.validator.ConditionalValidator;
 import org.fenxui.application.view.factory.handler.page.PageContext;
 import org.fenxui.core.exception.FenxuiInitializationException;
 
-public class ValidatorAnnotationHandler implements AnnotationHandler {
+public class ValidatorAnnotationHandler implements FieldAnnotationHandler {
 
 	@Override
 	public void handle(NodeContext fieldContext, Annotation annotation) throws FenxuiInitializationException {

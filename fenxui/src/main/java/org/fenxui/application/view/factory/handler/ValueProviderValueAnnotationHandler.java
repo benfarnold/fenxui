@@ -6,7 +6,7 @@ import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.components.option.FieldOption.DisplayValue;
 import org.fenxui.application.view.components.valueprovider.StaticValueProvider;
 
-public class ValueProviderValueAnnotationHandler implements AnnotationHandler {
+public class ValueProviderValueAnnotationHandler implements FieldAnnotationHandler {
 
 	@Override
 	public void handle(NodeContext fieldContext, Annotation annotation) {

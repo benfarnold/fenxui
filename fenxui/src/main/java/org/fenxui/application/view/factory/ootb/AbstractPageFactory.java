@@ -10,15 +10,16 @@ import org.fenxui.application.view.components.ContentPane;
 import org.fenxui.application.view.components.NavigablePage;
 import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.factory.AbstractFactoryInitContext;
+import org.fenxui.application.view.components.option.MethodOption;
 import org.fenxui.application.view.factory.handler.page.PageAnnotationHandler;
 import org.fenxui.application.view.factory.handler.page.PageContext;
 import org.fenxui.application.view.factory.PageContentProcessor;
 import org.fenxui.core.exception.FenxuiInitializationException;
 
 /**
- * Lays out page as a grid within a vbox vbox: title, grid grid: Row 1....n factory
- * elements 1..n (A factory element is typically a label and a field, but may also
- * include a button that populates the field) Row n+1 factory action buttons row
+ * Lays out page as a grid within a vbox vbox: title, grid grid: Row 1....n form
+ * elements 1..n (A form element is typically a value and a field, but may also
+ * include a button that populates the field) Row n+1 form action buttons row
  */
 public class AbstractPageFactory implements PageFactory {
 
@@ -49,6 +50,8 @@ public class AbstractPageFactory implements PageFactory {
 			region = new ContentPane();
 			List<FieldOption> fieldOptions = pageContext.getFieldOptions();
 			((ContentPane) region).addFields(fieldOptions);
+			List<MethodOption> methodOptions = pageContext.getMethodOptions();
+			((ContentPane) region).addActionWidgets(methodOptions);
 		} else {
 			region = new NavigablePage(pageContext.getMenuItems(), pageContext.getMenuOrientation(), pageContext.getMenuCssClass(), pageContext.getMenuMinWidth(), pageContext.getMenuMinHeight());
 		}
@@ -61,7 +64,7 @@ public class AbstractPageFactory implements PageFactory {
 //		contentPane.getChildren().add(hbBtn);
 
 //		contentPane.getChildren().add(1, new Label());//space after title
-//		contentPane.getChildren().add(4, new Label());//space above factory submit button
+//		contentPane.getChildren().add(4, new Label());//space above form submit button
 //		contentPane.setSpacing(10);
 		return region;
 	}

@@ -4,7 +4,7 @@ import org.fenxui.core.exception.FenxuiInitializationException;
 
 import java.lang.annotation.Annotation;
 
-public interface AnnotationHandler {
+public interface FieldAnnotationHandler {
 
 	void handle(NodeContext fieldContext, Annotation annotation) throws FenxuiInitializationException, FenxuiInitializationException;
 }

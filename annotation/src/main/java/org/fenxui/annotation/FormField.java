@@ -29,4 +29,8 @@ public @interface FormField {
 	 * True if the field should expand horizontally with the form
 	 */
 	boolean dynamicWidth() default false;
+	/**
+	 * False if the field can be edited
+	 */
+	boolean readOnly() default false;
 }

@@ -6,7 +6,7 @@ import org.fenxui.annotation.ValueProviderValue;
 import org.fenxui.annotation.ValueProviderValues;
 import org.fenxui.core.exception.FenxuiInitializationException;
 
-public class ValueProviderValuesAnnotationHandler implements AnnotationHandler {
+public class ValueProviderValuesAnnotationHandler implements FieldAnnotationHandler {
 	//We may need to do a lookup for handler in future to handle overriden handlers
 	private final ValueProviderValueAnnotationHandler handler = new ValueProviderValueAnnotationHandler();
 	
