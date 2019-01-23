@@ -5,11 +5,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Screen;
 import org.fenxui.application.config.FenxuiConfig;
-import org.fenxui.application.exception.FenxuiInitializationException;
-import org.fenxui.application.view.FenxuiViewModel;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 /**
- * Scene layout
+ * Scene org.fenxui.api.option.layout
  */
 public class SceneDecorator extends AbstractDecorator<Region> implements ComponentDecorator<Scene> {
 	public SceneDecorator(ComponentDecorator decorator) {

@@ -1,6 +1,6 @@
 package org.fenxui.application.view.factory.handler.util;
 
-import org.fenxui.application.exception.FenxuiInitializationException;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 import java.lang.reflect.Method;
 

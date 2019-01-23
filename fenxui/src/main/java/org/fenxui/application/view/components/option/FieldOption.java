@@ -1,29 +1,31 @@
 package org.fenxui.application.view.components.option;
 
-import com.jfoenix.validation.base.ValidatorBase;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
-import org.fenxui.application.exception.FenxuiInitializationException;
+import org.fenxui.api.factory.FieldFactory;
+import org.fenxui.api.option.IFieldOption;
+import org.fenxui.api.validator.IValidator;
+import org.fenxui.application.marshall.BindBiDirectionalMarshallStrategy;
+import org.fenxui.application.marshall.MarshallStrategy;
 import org.fenxui.application.view.components.valueprovider.StaticValueProvider;
 import org.fenxui.application.view.components.valueprovider.ValueProvider;
 import org.fenxui.application.view.factory.handler.FieldPostProcessor;
-import org.fenxui.application.view.factory.ootb.form.FieldFactory;
-import org.fenxui.application.view.factory.ootb.form.marshall.BindBiDirectionalMarshallStrategy;
-import org.fenxui.application.view.factory.ootb.form.marshall.MarshallStrategy;
+import org.fenxui.api.option.layout.LayoutSection;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FieldOption<T extends Property> {
+public class FieldOption<T extends Property> implements IFieldOption {
 	private final String fieldName;
 	private final BooleanProperty readOnly = new SimpleBooleanProperty(false);
 	private String name;
 	private T value;
 	private LayoutSection layoutSection;
 	private List<FieldPostProcessor> fieldPostProcessors = new ArrayList<>();
-	private List<ValidatorBase> validators = new ArrayList<>();
+	private List<IValidator> validators = new ArrayList<>();
 	private ValueProvider valueProvider;
 	private FieldFactory fieldFactory;
 	private MarshallStrategy marshallStrategy = new BindBiDirectionalMarshallStrategy();
@@ -45,11 +47,11 @@ public class FieldOption<T extends Property> {
 		return fieldName;
 	}
 	
-	public void addValidator(ValidatorBase validator) {
+	public void addValidator(IValidator validator) {
 		validators.add(validator);
 	}
 	
-	public List<ValidatorBase> getValidators() {
+	public List<IValidator> getValidators() {
 		return validators;
 	}
 
@@ -153,7 +155,4 @@ public class FieldOption<T extends Property> {
 		}
 	}
 
-	public enum LayoutSection {
-		DEFAULT, ADVANCED
-	}
 }
