@@ -1,18 +1,18 @@
 package org.fenxui.application.view.factory.ootb;
 
 import org.fenxui.application.view.factory.ContextGraph;
-import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.factory.GraphRunner;
 import org.fenxui.application.view.factory.PagePostProcessorPrep;
 import org.fenxui.application.view.factory.handler.FieldPostProcessor;
 import org.fenxui.application.view.factory.handler.page.AbstractFrameContext;
 import org.fenxui.application.view.factory.handler.page.PageContext;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Hold context of pages and menu links for decorator to determine layout
+ * Hold context of pages and menu links for decorator to determine org.fenxui.api.option.layout
  */
 public class AppConstruction extends AbstractFrameContext {
 	private final ContextGraph graph = new ContextGraph();

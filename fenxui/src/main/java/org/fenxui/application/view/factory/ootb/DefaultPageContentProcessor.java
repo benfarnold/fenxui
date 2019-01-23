@@ -2,8 +2,9 @@ package org.fenxui.application.view.factory.ootb;
 
 import javafx.beans.property.Property;
 import org.fenxui.annotation.app.MenuItem;
+import org.fenxui.api.factory.FieldFactory;
+import org.fenxui.api.factory.ValidatorFactory;
 import org.fenxui.application.config.FenxuiConfig;
-import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.components.NamedHideable;
 import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.factory.PageContentProcessor;
@@ -11,7 +12,7 @@ import org.fenxui.application.view.factory.handler.AnnotationHandler;
 import org.fenxui.application.view.factory.handler.NodeContext;
 import org.fenxui.application.view.factory.handler.page.PageContext;
 import org.fenxui.application.view.factory.handler.util.ReflectiveFieldRetriever;
-import org.fenxui.application.view.factory.ootb.form.FieldFactory;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -21,12 +22,14 @@ import java.util.Map;
 public class DefaultPageContentProcessor implements PageContentProcessor {
 	private final Map<Class, AnnotationHandler> annotationHandlers;
 	private final Map<String, FieldFactory> fieldFactories;
+	private final Map<String, ValidatorFactory> validatorFactories;
 
 	private PageFactory pageFactory;
 
-	public DefaultPageContentProcessor(Map<Class, AnnotationHandler> annotationHandlers, Map<String, FieldFactory> fieldFactories) {
+	public DefaultPageContentProcessor(Map<Class, AnnotationHandler> annotationHandlers, Map<String, FieldFactory> fieldFactories, Map<String, ValidatorFactory> validatorFactories) {
 		this.annotationHandlers = annotationHandlers;
 		this.fieldFactories = fieldFactories;
+		this.validatorFactories = validatorFactories;
 	}
 
 	@Override
@@ -41,9 +44,9 @@ public class DefaultPageContentProcessor implements PageContentProcessor {
 		for (Field field : applicationPage.getClass().getDeclaredFields()) {
 			Object fieldInstance = new ReflectiveFieldRetriever(field).getFieldValue(applicationPage);
 			boolean removeFieldContext = true;
-			NodeContext fieldContext = new NodeContext(field, applicationPage, pageContext, fieldFactories);
+			NodeContext fieldContext = new NodeContext(field, applicationPage, pageContext, fieldFactories, validatorFactories);
 			if (fieldInstance instanceof Property) {
-				removeFieldContext = false;//only form fields should have FieldOptions
+				removeFieldContext = false;//only factory fields should have FieldOptions
 				fieldContext.getActiveFieldOption().setValue((Property) fieldInstance);
 			} else if (field.getAnnotationsByType(MenuItem.class).length == 1) {//process page links
 				NamedHideable contentPane = (NamedHideable) pageFactory.makePage(fieldInstance, fenxuiConfig, pageContext);

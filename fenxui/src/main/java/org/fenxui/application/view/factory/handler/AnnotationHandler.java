@@ -1,9 +1,10 @@
 package org.fenxui.application.view.factory.handler;
 
+import org.fenxui.core.exception.FenxuiInitializationException;
+
 import java.lang.annotation.Annotation;
-import org.fenxui.application.exception.FenxuiInitializationException;
 
 public interface AnnotationHandler {
 
-	void handle(NodeContext fieldContext, Annotation annotation) throws FenxuiInitializationException;
+	void handle(NodeContext fieldContext, Annotation annotation) throws FenxuiInitializationException, FenxuiInitializationException;
 }

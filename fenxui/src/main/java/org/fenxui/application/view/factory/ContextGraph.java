@@ -1,6 +1,6 @@
 package org.fenxui.application.view.factory;
 
-import org.fenxui.application.exception.FenxuiInitializationException;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 import java.util.*;
 

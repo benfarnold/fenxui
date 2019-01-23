@@ -2,8 +2,8 @@ package org.fenxui.application.view.factory.ootb;
 
 import javafx.scene.control.Label;
 import org.fenxui.application.view.factory.handler.FieldPostProcessor;
-import org.fenxui.application.view.factory.handler.app.Orientation;
 import org.fenxui.application.view.factory.handler.page.PageContext;
+import org.fenxui.api.option.layout.Orientation;
 
 public interface FrameContext {
 	void addPageContext(String name, PageContext pageContext);

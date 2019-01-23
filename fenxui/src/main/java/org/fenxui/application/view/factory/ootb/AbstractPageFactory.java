@@ -6,26 +6,26 @@ import java.util.Map;
 
 import javafx.scene.layout.Region;
 import org.fenxui.application.config.FenxuiConfig;
-import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.components.ContentPane;
 import org.fenxui.application.view.components.NavigablePage;
 import org.fenxui.application.view.components.option.FieldOption;
-import org.fenxui.application.view.factory.FactoryInitContext;
+import org.fenxui.application.view.factory.AbstractFactoryInitContext;
 import org.fenxui.application.view.factory.handler.page.PageAnnotationHandler;
 import org.fenxui.application.view.factory.handler.page.PageContext;
 import org.fenxui.application.view.factory.PageContentProcessor;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 /**
- * Lays out page as a grid within a vbox vbox: title, grid grid: Row 1....n form
- * elements 1..n (A form element is typically a label and a field, but may also
- * include a button that populates the field) Row n+1 form action buttons row
+ * Lays out page as a grid within a vbox vbox: title, grid grid: Row 1....n factory
+ * elements 1..n (A factory element is typically a label and a field, but may also
+ * include a button that populates the field) Row n+1 factory action buttons row
  */
 public class AbstractPageFactory implements PageFactory {
 
 	private final PageContentProcessor pageContentProcessor;
 	private final Map<Class, PageAnnotationHandler> pageAnnotationHandlers;
 
-	public AbstractPageFactory(PageContentProcessor pageContentProcessor, FactoryInitContext factoryInitContext) {
+	public AbstractPageFactory(PageContentProcessor pageContentProcessor, AbstractFactoryInitContext factoryInitContext) {
 		this.pageContentProcessor = pageContentProcessor;
 		this.pageAnnotationHandlers = factoryInitContext.getPageAnnotationHandlers();
 		pageContentProcessor.setPageFactory(this);
@@ -61,7 +61,7 @@ public class AbstractPageFactory implements PageFactory {
 //		contentPane.getChildren().add(hbBtn);
 
 //		contentPane.getChildren().add(1, new Label());//space after title
-//		contentPane.getChildren().add(4, new Label());//space above form submit button
+//		contentPane.getChildren().add(4, new Label());//space above factory submit button
 //		contentPane.setSpacing(10);
 		return region;
 	}

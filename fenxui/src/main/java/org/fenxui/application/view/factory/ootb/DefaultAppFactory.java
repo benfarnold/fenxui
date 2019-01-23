@@ -1,13 +1,12 @@
 package org.fenxui.application.view.factory.ootb;
 
-import org.fenxui.application.view.FenxuiViewModel;
-import org.fenxui.application.view.factory.FactoryInitContext;
+import org.fenxui.application.view.factory.AbstractFactoryInitContext;
 
 public class DefaultAppFactory extends AbstractAppFactory implements AppFactory {
 	private final Runnable onCloseAction;
 
-	public DefaultAppFactory(Runnable onCloseAction) {
-		super(new DefaultPageFactory(new FactoryInitContext()));
+	public DefaultAppFactory(Runnable onCloseAction, AbstractFactoryInitContext initContext) {
+		super(new DefaultPageFactory(initContext));
 		this.onCloseAction = onCloseAction;
 	}
 

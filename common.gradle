@@ -2,13 +2,33 @@
 // This file is to be applied to every subproject.
 //
 apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'pmd'
+apply plugin: 'maven-publish'
 
-sourceCompatibility = '1.8'
+jacoco {
+    toolVersion = "0.8.1"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+pmd {
+    ignoreFailures = true
+}
+
+subprojects {
+    publishing {
+        publications {
+            mavenJava {
+                from components.java
+                artifactId = jar.baseName
+            }
+        }
+    }
+}
+version = '1.0.0.0'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 repositories {
-    mavenCentral();
-    // You may define additional repositories, or even remove "mavenCentral()".
-    // Read more about repositories here:
-    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:repositories
+    mavenCentral()
+    mavenLocal()
 }

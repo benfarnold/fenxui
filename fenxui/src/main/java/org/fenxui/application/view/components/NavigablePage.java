@@ -7,7 +7,7 @@ import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import org.fenxui.application.view.components.menu.PageLink;
 import org.fenxui.application.view.components.option.ColorOptions;
-import org.fenxui.application.view.factory.handler.app.Orientation;
+import org.fenxui.api.option.layout.Orientation;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,7 +1,8 @@
 package org.fenxui.application.view.bind.widget;
 
-import com.jfoenix.controls.base.IFXValidatableControl;
-
-public interface UniqueValidatableControl extends IFXValidatableControl {
+public interface UniqueValidatableControl {
 	String getUniqueId();
+	boolean validate();
+
+
 }
