@@ -6,7 +6,7 @@ import org.apache.commons.logging.LogFactory;
 import org.fenxui.application.FenxuiApplication;
 import org.fenxui.application.config.FenxuiConfig;
 import org.fenxui.application.view.prototype.FenxuiPrototype;
-import org.fenxui.ootb.jfx.jdk8.JFX8Prototype;
+import org.fenxui.ootb.jfx.jdk8.JFX11Prototype;
 import org.fenxui.samples.simple.viewmodel.SampleViewModel;
 
 public class SampleApp extends FenxuiApplication {
@@ -22,7 +22,7 @@ public class SampleApp extends FenxuiApplication {
 
 	@Override
 	public FenxuiPrototype getFenxuiPrototype() {
-		return JFX8Prototype.newInstance(new SampleViewModel(), () -> {
+		return JFX11Prototype.newInstance(new SampleViewModel(), () -> {
 			log.info("Application closing");
 			Platform.exit();
 		});

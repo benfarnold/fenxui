@@ -3,6 +3,24 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'org.openjfx:javafx-plugin:0.0.7'
+    }
+}
+
+apply plugin: 'org.openjfx.javafxplugin'
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.graphics' ]
+    version = "11.0.+"
+}
+
 repositories {
     mavenLocal()
     mavenCentral()

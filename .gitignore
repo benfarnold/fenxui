@@ -2,6 +2,8 @@
 .nb-gradle
 *.iml
 .idea/**
+build/**
+out/**
 annotation/build/**
 annotation/out/**
 api/build/**
@@ -10,9 +12,9 @@ core/build/**
 core/out/**
 ootb-jfx-common/build/**
 ootb-jfx-common/out/**
-ootb-jfx-jdk8/build/**
-ootb-jfx-jdk8/out/**
+ootb-jfx-jdk11/build/**
+ootb-jfx-jdk11/out/**
 fenxui/build/**
 fenxui/out/**
-samples-jfx8/build/**
-samples-jfx8/out/**
+samples-jfx/build/**
+samples-jfx/out/**

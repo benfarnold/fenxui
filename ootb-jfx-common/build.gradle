@@ -3,10 +3,29 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'org.openjfx:javafx-plugin:0.0.7'
+    }
+}
+
+apply plugin: 'org.openjfx.javafxplugin'
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.graphics' ]
+    version = "11.0.+"
+}
+
 dependencies {
     compile project(':fenxui')
     //ui
-    compile 'com.jfoenix:jfoenix:8.0.7' // Java 8
+    compile group: 'com.jfoenix', name: 'jfoenix', version: '9.0.8' //java 9+
+
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'

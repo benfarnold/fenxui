@@ -10,9 +10,9 @@ import java.util.Map;
 import static org.fenxui.api.prototype.OOTBFieldPrototypes.MONETARY_FIELD;
 import static org.fenxui.api.prototype.OOTBFieldPrototypes.PERCENT_FIELD;
 
-public class JFX8FactoryInitContext extends FactoryInitContext {
+public class JFX11FactoryInitContext extends FactoryInitContext {
 
-	public JFX8FactoryInitContext() {
+	public JFX11FactoryInitContext() {
 		super();
 		Map<String, FieldFactory> defaultFieldFactories = getFieldFactories();
 		defaultFieldFactories.put(MONETARY_FIELD, new MonetaryFieldFactory());

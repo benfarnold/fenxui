@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.fenxui.application.FenxuiApplication;
 import org.fenxui.application.config.FenxuiConfig;
 import org.fenxui.application.view.prototype.FenxuiPrototype;
-import org.fenxui.ootb.jfx.jdk8.JFX8Prototype;
+import org.fenxui.ootb.jfx.jdk8.JFX11Prototype;
 
 public class ButtonActionApp extends FenxuiApplication {
 	private static final Logger logger = LogManager.getLogger(ButtonActionApp.class);
@@ -33,7 +33,7 @@ public class ButtonActionApp extends FenxuiApplication {
 //			ClientDataModel clientDataModel = DataService.INSTANCE.loadDataFromDisk();
 //			clientDataModel.marshallTo(applicationViewModel);
 
-			return JFX8Prototype.newInstance(applicationViewModel, () -> {
+			return JFX11Prototype.newInstance(applicationViewModel, () -> {
 				logger.info("Application closing.  Auto-saving data.");
 //				applicationViewModel.marshallTo(clientDataModel);
 //				try {

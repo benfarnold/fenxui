@@ -9,16 +9,16 @@ import org.fenxui.application.view.factory.FenxuiFactory;
 import org.fenxui.application.view.factory.ootb.AppFactory;
 import org.fenxui.application.view.factory.ootb.DefaultAppFactory;
 import org.fenxui.application.view.prototype.FenxuiPrototype;
-import org.fenxui.ootb.jfx.jdk8.factory.JFX8FactoryInitContext;
+import org.fenxui.ootb.jfx.jdk8.factory.JFX11FactoryInitContext;
 import org.fenxui.ootb.jfx.layout.JFXWindowDressingDecorator;
 
 /**
  * Prototype for a page styled with JFoenix library
  */
-public interface JFX8Prototype extends FenxuiPrototype {
+public interface JFX11Prototype extends FenxuiPrototype {
 
 	static FenxuiPrototype newInstance(FenxuiViewModel fenxuiViewModel, Runnable onCloseAction) {
-		return newInstance(fenxuiViewModel, new DefaultAppFactory(onCloseAction, new JFX8FactoryInitContext()));
+		return newInstance(fenxuiViewModel, new DefaultAppFactory(onCloseAction, new JFX11FactoryInitContext()));
 	}
 
 	static FenxuiPrototype newInstance(FenxuiViewModel fenxuiViewModel, AppFactory appFactory) {

@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.fenxui.application.FenxuiApplication;
 import org.fenxui.application.config.FenxuiConfig;
 import org.fenxui.application.view.prototype.FenxuiPrototype;
-import org.fenxui.ootb.jfx.jdk8.JFX8Prototype;
+import org.fenxui.ootb.jfx.jdk8.JFX11Prototype;
 import org.fenxui.samples.networth.data.DataService;
 import org.fenxui.samples.networth.data.DemoDataModel;
 import org.fenxui.samples.networth.ui.NetWorthViewModel;
@@ -29,7 +29,7 @@ public class NetWorthApplication extends FenxuiApplication {
 		DemoDataModel demoDataModel = DataService.INSTANCE.loadDataFromDisk();
 //		applicationViewModel.setText(demoDataModel.getText());
 
-		return JFX8Prototype.newInstance(applicationViewModel, () -> {
+		return JFX11Prototype.newInstance(applicationViewModel, () -> {
 			logger.info("Application closing.  Auto-saving data.");
 //			demoDataModel.setText(applicationViewModel.getText());
 			DataService.INSTANCE.saveDataModel(demoDataModel);
