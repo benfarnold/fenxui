@@ -1,15 +1,16 @@
 package org.fenxui.application.view.factory.ootb;
 
-import org.fenxui.application.view.factory.FactoryInitContext;
+import org.fenxui.application.view.factory.AbstractFactoryInitContext;
 
 public class DefaultPageFactory extends AbstractPageFactory {
 
-	public DefaultPageFactory(FactoryInitContext factoryInitContext) {
+	public DefaultPageFactory(AbstractFactoryInitContext factoryInitContext) {
 		super(new DefaultPageContentProcessor(
-						factoryInitContext.getFormFieldAnnotationHandlers(),
-						factoryInitContext.getMethodAnnotationHandlers(),
-						factoryInitContext.getFieldFactories(),
-						factoryInitContext.getActionFactories()
+				factoryInitContext.getFormFieldAnnotationHandlers(),
+				factoryInitContext.getMethodAnnotationHandlers(),
+				factoryInitContext.getFieldFactories(),
+				factoryInitContext.getValidatorFactories(),
+				factoryInitContext.getActionFactories()
 				), factoryInitContext);
 	}
 

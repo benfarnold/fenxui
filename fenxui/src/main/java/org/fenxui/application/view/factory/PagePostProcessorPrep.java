@@ -1,8 +1,8 @@
 package org.fenxui.application.view.factory;
 
-import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.factory.handler.FieldPostProcessor;
 import org.fenxui.application.view.factory.handler.page.PageContext;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,10 +4,10 @@ import java.lang.reflect.Method;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.action.ReflectiveActionEventHandler;
 import org.fenxui.application.view.bind.widget.ActionableWidget;
 import org.fenxui.application.view.factory.handler.util.ReflectiveMethodRetriever;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 public interface ActionHandler {
 

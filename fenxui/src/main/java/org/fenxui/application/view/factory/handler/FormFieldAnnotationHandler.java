@@ -6,10 +6,10 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.Property;
 import org.fenxui.annotation.FormField;
-import org.fenxui.application.exception.FenxuiInitializationException;
+import org.fenxui.application.marshall.DoubleMarshallStrategy;
+import org.fenxui.application.marshall.IntegerMarshallStrategy;
 import org.fenxui.application.view.components.option.FieldOption;
-import org.fenxui.application.view.factory.ootb.form.marshall.DoubleMarshallStrategy;
-import org.fenxui.application.view.factory.ootb.form.marshall.IntegerMarshallStrategy;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 public class FormFieldAnnotationHandler implements FieldAnnotationHandler {
 

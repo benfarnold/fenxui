@@ -4,7 +4,7 @@ import java.lang.annotation.Annotation;
 
 import org.fenxui.annotation.ValueProviderValue;
 import org.fenxui.annotation.ValueProviderValues;
-import org.fenxui.application.exception.FenxuiInitializationException;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 public class ValueProviderValuesAnnotationHandler implements FieldAnnotationHandler {
 	//We may need to do a lookup for handler in future to handle overriden handlers

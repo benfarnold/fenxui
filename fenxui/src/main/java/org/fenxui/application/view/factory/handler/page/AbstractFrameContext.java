@@ -3,8 +3,8 @@ package org.fenxui.application.view.factory.handler.page;
 import javafx.scene.control.Label;
 import org.fenxui.application.view.components.NamedHideable;
 import org.fenxui.application.view.components.menu.PageLink;
-import org.fenxui.application.view.factory.handler.app.Orientation;
 import org.fenxui.application.view.factory.ootb.FrameContext;
+import org.fenxui.api.option.layout.Orientation;
 
 import java.util.ArrayList;
 import java.util.List;

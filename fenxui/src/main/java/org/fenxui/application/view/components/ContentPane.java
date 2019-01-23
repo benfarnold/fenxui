@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Control;
@@ -13,7 +13,7 @@ import javafx.scene.control.Skin;
 import javafx.scene.paint.Paint;
 import org.fenxui.application.view.components.option.ColorOptions;
 import org.fenxui.application.view.components.option.FieldOption;
-import org.fenxui.application.view.factory.handler.action.MethodOption;
+import org.fenxui.application.view.components.option.MethodOption;
 
 /**
  * What the @AppPage ends up being displayed in

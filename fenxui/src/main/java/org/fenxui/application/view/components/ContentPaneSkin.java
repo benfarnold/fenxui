@@ -1,18 +1,18 @@
 package org.fenxui.application.view.components;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.SkinBase;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.fenxui.application.view.bind.widget.LayoutGridPane;
 import org.fenxui.application.view.bind.widget.UniqueValidatableControl;
 import org.fenxui.application.view.components.option.FieldOption;
-import org.fenxui.application.view.factory.handler.action.MethodOption;
+import org.fenxui.api.option.layout.LayoutSection;
+import org.fenxui.application.view.components.option.MethodOption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class ContentPaneSkin extends SkinBase<ContentPane> {
 				textField.minWidthProperty().bind(gridPane.prefValueWidthProperty());
 				textField.maxWidthProperty().bind(gridPane.maxValueWidthProperty());
 			}
-			if (FieldOption.LayoutSection.ADVANCED == option.getLayoutSection()) {
+			if (LayoutSection.ADVANCED == option.getLayoutSection()) {
 				gridPane.addAdditionalRow(expanding, new Label(option.getName()), node);
 			} else {
 				gridPane.addNormalRow(expanding, new Label(option.getName()), node);

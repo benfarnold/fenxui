@@ -3,12 +3,12 @@ package org.fenxui.application.view.factory.handler.el;
 import javafx.beans.property.IntegerProperty;
 import org.fenxui.annotation.el.ExpressionFormField;
 import org.fenxui.application.el.*;
-import org.fenxui.application.exception.FenxuiInitializationException;
+import org.fenxui.application.marshall.IntegerMarshallStrategy;
 import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.factory.handler.FieldAnnotationHandler;
 import org.fenxui.application.view.factory.handler.NodeContext;
 import org.fenxui.application.view.factory.handler.page.PageContext;
-import org.fenxui.application.view.factory.ootb.form.marshall.IntegerMarshallStrategy;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 import java.lang.annotation.Annotation;
 

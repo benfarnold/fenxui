@@ -2,10 +2,10 @@ package org.fenxui.application.view.factory.handler;
 
 import java.lang.annotation.Annotation;
 import org.fenxui.annotation.CheckBoxValue;
-import org.fenxui.application.exception.FenxuiInitializationException;
 import org.fenxui.application.view.components.option.FieldOption;
 import org.fenxui.application.view.components.option.FieldOption.DisplayValue;
 import org.fenxui.application.view.components.valueprovider.StaticValueProvider;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 public class CheckBoxValueAnnotationHandler implements FieldAnnotationHandler {
 

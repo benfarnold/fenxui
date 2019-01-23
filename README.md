@@ -112,9 +112,22 @@ Declares a field that is populated by a JEXL expression.
 
 example<br>
 ```java
+@FormField(label = "Feet")
+private IntegerProperty heightFeet = new SimpleIntegerProperty(0);
+
+@FormField(label = "Inches")
+private IntegerProperty heightInches = new SimpleIntegerProperty(1);//avoid division by 0
+
+@ExpressionFormField(label = "total inches", expression = "12 * #{heightFeet} + #{heightInches}")
+private IntegerProperty heightInchesTotal = new SimpleIntegerProperty();
+
+@FormField(label = "Weight (lbs)")
+private IntegerProperty weight = new SimpleIntegerProperty(0);
+
 @ExpressionFormField(label = "BMI", expression = "#{weight} / (#{heightInchesTotal} * #{heightInchesTotal} * 1.0) * 7.03", factory = "percent")//'1.0' -> avoid integer division
 private ObjectProperty<BigDecimal> bmi = new SimpleObjectProperty<>(BigDecimal.ZERO);
 ```
+![Expression populated field](https://user-images.githubusercontent.com/3435255/51066030-086c2300-15d6-11e9-8762-f29d8e7cfaf4.png)
 
 ### Value Providers
 #### @CheckBoxValue

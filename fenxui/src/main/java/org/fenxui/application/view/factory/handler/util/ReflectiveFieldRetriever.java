@@ -1,7 +1,7 @@
 package org.fenxui.application.view.factory.handler.util;
 
 import org.apache.commons.lang3.reflect.FieldUtils;
-import org.fenxui.application.exception.FenxuiInitializationException;
+import org.fenxui.core.exception.FenxuiInitializationException;
 
 import java.lang.reflect.Field;
 
