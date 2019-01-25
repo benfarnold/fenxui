@@ -14,3 +14,11 @@ repositories {
 dependencies {
     compile project(':api')
 }
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+task install(dependsOn: "publishToMavenLocal")

@@ -15,16 +15,6 @@ pmd {
     ignoreFailures = true
 }
 
-subprojects {
-    publishing {
-        publications {
-            mavenJava {
-                from components.java
-                artifactId = jar.baseName
-            }
-        }
-    }
-}
 version = '1.0.0.0'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
