@@ -13,3 +13,12 @@ dependencies {
     testCompile group: 'org.testfx', name: 'testfx-junit', version: '4.0.13-alpha'
 
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+task install(dependsOn: "publishToMavenLocal")
